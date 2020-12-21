@@ -1,3 +1,3 @@
-import invariant from "tiny-invariant";
+import invariant from 'tiny-invariant';
 
-invariant(false, "This package does not contain any code yet.");
+invariant(false, 'This package does not contain any code yet.');
