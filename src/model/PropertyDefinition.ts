@@ -1,7 +1,10 @@
 import { QNameWithTypeTag, QNameTypeTag } from './QName';
 import DictionaryDefinition from './DictionaryDefinition';
 
-interface PropertyDefinition
+/**
+ * @public
+ */
+export default interface PropertyDefinition
     extends DictionaryDefinition<QNameTypeTag.PROPERTY> {
     readonly container: QNameWithTypeTag<QNameTypeTag.CLASS>;
     readonly defaultValue: string | null;
@@ -12,13 +15,10 @@ interface PropertyDefinition
     readonly protected: boolean;
     readonly constraints: readonly PropertyConstraint[];
 }
-
 export enum PropertyConstraintType {
     LIST = 'LIST',
     REGEX = 'REGEX',
 }
-
-export default PropertyDefinition;
 
 export type PropertyConstraint =
     | AnyPropertyConstraint

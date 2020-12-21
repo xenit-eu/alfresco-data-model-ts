@@ -4,6 +4,9 @@ import IQNameFactory from './IQNameFactory';
 // @internal
 export const factorySymbol = Symbol('QNameFactory');
 
+/**
+ * @public
+ */
 interface QName {
     readonly prefix: string;
     readonly namespaceURI: string;
@@ -12,6 +15,9 @@ interface QName {
     readonly [factorySymbol]: IQNameFactory;
 }
 
+/**
+ * @public
+ */
 namespace QName {
     export function toString(qname: QName): string {
         return '{' + qname.namespaceURI + '}' + qname.localName;

@@ -1,6 +1,9 @@
 import DictionaryDefinition from './DictionaryDefinition';
 import { QNameTypeTag, QNameWithTypeTag } from './QName';
 
+/**
+ * @public
+ */
 export default interface AssociationDefinition
     extends DictionaryDefinition<QNameTypeTag.ASSOCIATION> {
     readonly sourceName: QNameWithTypeTag<QNameTypeTag.CLASS>;

@@ -7,7 +7,7 @@
     "url": "https://xenit.eu/"
   },
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "typings": "dist/alfresco-data-model-public.d.ts",
   "module": "dist/alfresco-data-model.esm.js",
   "files": [
     "dist",
@@ -22,9 +22,10 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
+    "api-extractor": "tsc -p . --outDir temp/build --declaration && api-extractor run",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "tsdx build"
+    "prepare": "npm run build && npm run api-extractor"
   },
   "peerDependencies": {},
   "husky": {
@@ -40,10 +41,11 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.12.1",
     "@types/jest": "^25.1.4",
     "husky": "^4.2.3",
     "tsdx": "^0.13.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.7"
   },
   "dependencies": {
     "@types/debug": "^4.1.5",

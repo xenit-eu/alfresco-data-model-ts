@@ -21,6 +21,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: API extractor
+        run: npm run api-extractor
+
       - name: Test
         run: npm test --ci --coverage --maxWorkers=2
 
