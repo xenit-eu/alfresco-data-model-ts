@@ -13,4 +13,12 @@ export default class QNameMap<T extends DictionaryDefinition> {
     public lookup(qname: QName): T | null {
         return this.backing[QName.toString(qname)] ?? null;
     }
+
+    public all(): readonly T[] {
+        return Object.values(this.backing);
+    }
+
+    public keys(): readonly QName[] {
+        return this.all().map(value => value.name);
+    }
 }

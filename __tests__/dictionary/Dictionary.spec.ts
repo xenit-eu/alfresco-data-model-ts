@@ -568,6 +568,21 @@ describe('Dictionary', () => {
         ]);
     });
 
+    it('#getChildrenForClass()', () => {
+        const folderChildren = dictionary.getChildrenForClass(qnameFactory.createQNameFromString('cm:folder'));
+        expect(folderChildren.map(c => QName.toPrefixString(c.name)))
+            .toEqual([
+                'cm:folder'
+            ]);
+        const cmobjectChildren = dictionary.getChildrenForClass(qnameFactory.createQNameFromString('cm:cmobject'))
+            .map(c => QName.toPrefixString(c.name));
+        expect(cmobjectChildren).toContain('cm:cmobject');
+        expect(cmobjectChildren).toContain('cm:folder');
+        expect(cmobjectChildren).toContain('cm:content');
+        expect(cmobjectChildren).toContain('test:testClass');
+        expect(cmobjectChildren).toHaveLength(4);
+    })
+
     describe('Broken dictionary', () => {
         const dictionary = new Dictionary(
             [
@@ -773,6 +788,10 @@ describe('Dictionary', () => {
             }).toThrowErrorMatchingInlineSnapshot(
                 `"Circular dependency on class test:circularAspectParent2: test:circularAspectParent2 -> test:circularAspectParent1 -> test:circularAspectParent2"`
             );
+
+            expect(() => {
+                dictionary.getChildrenForClass(qnameFactory.createQNameFromString('test:circular1'))
+            }).toThrowError();
         });
 
         it('Handles a reference to a nonexisting class', () => {
@@ -790,6 +809,10 @@ describe('Dictionary', () => {
             }).toThrowErrorMatchingInlineSnapshot(
                 `"Class test:danglingAspect2 (referred to by test:danglingAspect1) does not exist."`
             );
+
+            expect(() => {
+                dictionary.getChildrenForClass(qnameFactory.createQNameFromString('test:dangling1'))
+            }).toThrowError();
         });
     });
 });

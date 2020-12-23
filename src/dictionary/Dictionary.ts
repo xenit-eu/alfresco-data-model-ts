@@ -79,6 +79,10 @@ export default class Dictionary implements IDictionary {
     private readonly parentsCache: QNameCache<
         QNameWithTypeTag<QNameTypeTag.CLASS>[]
     > = new QNameCache();
+
+    private readonly childrenCache: QNameCache<
+        QNameWithTypeTag<QNameTypeTag.CLASS>[]
+    > = new QNameCache();
     private readonly residualPropertiesCache: QNameCache<
         PropertyDefinition
     > = new QNameCache();
@@ -242,7 +246,6 @@ export default class Dictionary implements IDictionary {
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): ClassDefinition[] {
         QNameWithTypeTag.assertTag(qname, QNameTypeTag.CLASS);
-
         const allMandatoryAspects = this.getParentsForClass(qname).flatMap(cl =>
             cl.mandatoryAspects.flatMap(asp => {
                 const allClasses = this.getAllClassesForClass(asp);
@@ -253,5 +256,34 @@ export default class Dictionary implements IDictionary {
             })
         );
         return makeUnique(allMandatoryAspects);
+    }
+
+    public getChildrenForClass(
+        qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
+    ): ClassDefinition[] {
+        const cachedChildren = this.childrenCache.get(qname);
+        if (cachedChildren) {
+            return cachedChildren.map(q => this.getClass(q)!);
+        }
+
+        const myself = this.getClass(qname);
+        if (!myself) {
+            return [];
+        }
+
+        const children = [];
+
+        for (const clazz of this.classes.all()) {
+            if (this.getParentsForClass(clazz.name).indexOf(myself) !== -1) {
+                children.push(clazz);
+            }
+        }
+
+        this.childrenCache.put(
+            qname,
+            children.map(c => c.name)
+        );
+
+        return children;
     }
 }

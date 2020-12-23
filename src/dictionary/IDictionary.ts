@@ -35,4 +35,8 @@ export default interface IDictionary {
     getMandatoryAspectsForClass(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): ClassDefinition[];
+
+    getChildrenForClass(
+        qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
+    ): ClassDefinition[];
 }
