@@ -40,6 +40,12 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/temp/"
+    ]
+  },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.12.1",
     "@types/jest": "^25.1.4",
