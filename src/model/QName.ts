@@ -74,6 +74,10 @@ interface QNameWithTypeTag<T extends QNameTypeTag = QNameTypeTag>
     readonly [typeTagSymbol]: T;
 }
 
+export type QNameWithTypeTagConsumer<T extends QNameTypeTag> =
+    | QName
+    | QNameWithTypeTag<T | QNameTypeTag.UNKNOWN>;
+
 namespace QNameWithTypeTag {
     export function addTag<T extends QNameTypeTag>(
         q: QName,

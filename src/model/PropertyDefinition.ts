@@ -13,6 +13,7 @@ export default interface PropertyDefinition
     readonly mandatory: boolean;
     readonly mandatoryEnforced: boolean;
     readonly protected: boolean;
+    readonly residual: boolean;
     readonly constraints: readonly PropertyConstraint[];
 }
 export enum PropertyConstraintType {
