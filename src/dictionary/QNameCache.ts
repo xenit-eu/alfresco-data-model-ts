@@ -1,5 +1,8 @@
 import { QName } from '../model';
 
+/**
+ * @internal
+ */
 export default class QNameCache<T> {
     private storage: { [qname: string]: T } = {};
 

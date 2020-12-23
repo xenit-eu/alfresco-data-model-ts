@@ -14,7 +14,13 @@ import IDictionary from './IDictionary';
 import QNameCache from './QNameCache';
 import QNameMap from './QNameMap';
 
+/**
+ * @public
+ */
 export class DictionaryError extends Error {
+    /**
+     * @internal
+     */
     public constructor(public readonly reference: QName, message: string) {
         super(message);
         Object.setPrototypeOf(this, new.target.prototype);
@@ -22,7 +28,13 @@ export class DictionaryError extends Error {
     }
 }
 
+/**
+ * @public
+ */
 export class DictionaryCircularDependencyError extends DictionaryError {
+    /**
+     * @internal
+     */
     public constructor(
         reference: QName,
         public readonly path: readonly QName[]
@@ -42,7 +54,13 @@ export class DictionaryCircularDependencyError extends DictionaryError {
     }
 }
 
+/**
+ * @public
+ */
 export class DictionaryMissingDependencyError extends DictionaryError {
+    /**
+     * @internal
+     */
     public constructor(reference: QName, public readonly referrer: QName) {
         super(
             reference,
@@ -71,6 +89,9 @@ function makeUnique2<T>(
     );
 }
 
+/**
+ * @public
+ */
 export default class Dictionary implements IDictionary {
     private readonly classes: QNameMap<ClassDefinition>;
     private readonly properties: QNameMap<PropertyDefinition>;

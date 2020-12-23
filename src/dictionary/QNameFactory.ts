@@ -8,6 +8,10 @@ class QNameError extends TypeError {
         this.name = new.target.name;
     }
 }
+
+/**
+ * @public
+ */
 export default class QNameFactory implements IQNameFactory {
     private prefixToNamespace: { [pfx: string]: string } = {};
     private namespaceToPrefix: { [ns: string]: string } = {};

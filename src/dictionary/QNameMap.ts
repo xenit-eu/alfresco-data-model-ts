@@ -1,6 +1,9 @@
 import { QName } from '../model';
 import DictionaryDefinition from '../model/DictionaryDefinition';
 
+/**
+ * @internal
+ */
 export default class QNameMap<T extends DictionaryDefinition> {
     private backing: { [qname: string]: T } = {};
 
