@@ -1,8 +1,8 @@
-export { default as IDictionary } from './IDictionary';
 export {
-    default as Dictionary,
+    default as IDictionary,
     DictionaryError,
     DictionaryCircularDependencyError,
     DictionaryMissingDependencyError,
-} from './Dictionary';
+} from './IDictionary';
+export { default as Dictionary } from './Dictionary';
 export { default as QNameFactory } from './QNameFactory';

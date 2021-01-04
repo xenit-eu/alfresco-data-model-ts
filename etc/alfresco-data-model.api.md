@@ -7,178 +7,127 @@
 // Warning: (ae-forgotten-export) The symbol "DictionaryDefinition" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "QNameTypeTag" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
+// @public
 export interface AssociationDefinition extends DictionaryDefinition<QNameTypeTag.ASSOCIATION> {
-    // (undocumented)
     readonly childAssociation: boolean;
-    // (undocumented)
     readonly protected: boolean;
-    // (undocumented)
     readonly sourceMandatory: boolean;
-    // (undocumented)
     readonly sourceMandatoryEnforced: boolean;
-    // (undocumented)
     readonly sourceMany: boolean;
     // Warning: (ae-forgotten-export) The symbol "QNameWithTypeTag" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
     readonly sourceName: QNameWithTypeTag<QNameTypeTag.CLASS>;
-    // (undocumented)
     readonly targetMandatory: boolean;
-    // (undocumented)
     readonly targetMandatoryEnforced: boolean;
-    // (undocumented)
     readonly targetMany: boolean;
-    // (undocumented)
     readonly targetName: QNameWithTypeTag<QNameTypeTag.CLASS>;
 }
 
-// @public (undocumented)
+// @public
 export interface ClassDefinition extends DictionaryDefinition<QNameTypeTag.CLASS> {
-    // (undocumented)
     readonly associations: readonly QNameWithTypeTag<QNameTypeTag.ASSOCIATION>[];
-    // (undocumented)
     readonly mandatoryAspects: readonly QNameWithTypeTag<QNameTypeTag.CLASS>[];
-    // (undocumented)
     readonly parent: QNameWithTypeTag<QNameTypeTag.CLASS> | null;
-    // (undocumented)
     readonly properties: readonly QNameWithTypeTag<QNameTypeTag.PROPERTY>[];
 }
 
-// @public (undocumented)
+// @public
 export class Dictionary implements IDictionary {
     constructor(classes: readonly ClassDefinition[], properties: readonly PropertyDefinition[], associations: readonly AssociationDefinition[], qnameFactory: IQNameFactory);
-    // (undocumented)
     getAllAssociationsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): AssociationDefinition[];
-    // (undocumented)
     getAllClassesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
-    // (undocumented)
     getAllPropertiesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): PropertyDefinition[];
-    // (undocumented)
     getAssociation(qname: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>): AssociationDefinition | null;
-    // (undocumented)
     getChildrenForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     // Warning: (ae-forgotten-export) The symbol "QNameWithTypeTagConsumer" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
     getClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition | null;
-    // (undocumented)
     getMandatoryAspectsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
-    // (undocumented)
     getParentsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
-    // (undocumented)
     getProperty(qname: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>): PropertyDefinition;
     }
 
-// @public (undocumented)
+// @public
 export class DictionaryCircularDependencyError extends DictionaryError {
     // @internal
-    constructor(reference: QName, path: readonly QName[]);
-    // (undocumented)
+    constructor(reference: QName,
+    path: readonly QName[]);
     readonly path: readonly QName[];
 }
 
-// @public (undocumented)
+// @public
 export class DictionaryError extends Error {
     // @internal
-    constructor(reference: QName, message: string);
-    // (undocumented)
+    constructor(
+    reference: QName, message: string);
     readonly reference: QName;
 }
 
-// @public (undocumented)
+// @public
 export class DictionaryMissingDependencyError extends DictionaryError {
     // @internal
-    constructor(reference: QName, referrer: QName);
-    // (undocumented)
+    constructor(reference: QName,
+    referrer: QName);
     readonly referrer: QName;
 }
 
-// @public (undocumented)
+// @public
 export interface IDictionary {
-    // (undocumented)
     getAllAssociationsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): AssociationDefinition[];
-    // (undocumented)
     getAllClassesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
-    // (undocumented)
     getAllPropertiesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): PropertyDefinition[];
-    // (undocumented)
     getAssociation(qname: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>): AssociationDefinition | null;
-    // (undocumented)
     getChildrenForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
-    // (undocumented)
     getClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition | null;
-    // (undocumented)
     getMandatoryAspectsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
-    // (undocumented)
     getParentsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
-    // (undocumented)
     getProperty(qname: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>): PropertyDefinition;
 }
 
-// @public (undocumented)
+// @public
 export interface IQNameFactory {
-    // (undocumented)
     createQNameFromString(qname: string): QName;
-    // (undocumented)
     maybeCreateQNameFromString(qname: string): QName | null;
 }
 
-// @public (undocumented)
+// @public
 export interface PropertyDefinition extends DictionaryDefinition<QNameTypeTag.PROPERTY> {
     // Warning: (ae-forgotten-export) The symbol "PropertyConstraint" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
     readonly constraints: readonly PropertyConstraint[];
-    // (undocumented)
     readonly container: QNameWithTypeTag<QNameTypeTag.CLASS>;
-    // (undocumented)
     readonly dataType: QNameWithTypeTag<QNameTypeTag.DATA_TYPE>;
-    // (undocumented)
     readonly defaultValue: string | null;
-    // (undocumented)
     readonly mandatory: boolean;
-    // (undocumented)
     readonly mandatoryEnforced: boolean;
-    // (undocumented)
     readonly multiValued: boolean;
-    // (undocumented)
     readonly protected: boolean;
-    // (undocumented)
     readonly residual: boolean;
 }
 
-// @public (undocumented)
+// @public
 export interface QName {
-    // (undocumented)
     readonly [factorySymbol]: IQNameFactory;
-    // (undocumented)
     readonly localName: string;
-    // (undocumented)
     readonly namespaceURI: string;
-    // (undocumented)
     readonly prefix: string;
 }
 
-// @public (undocumented)
+// @public
 export namespace QName {
-    // (undocumented)
     export function equals(a: QName | null | undefined, b: QName | string | null | undefined): boolean;
-    // (undocumented)
     export function isInstance(a: any): a is QName;
-    // (undocumented)
     export function toPrefixString(qname: QName): string;
-    // (undocumented)
     export function toString(qname: QName): string;
 }
 
-// @public (undocumented)
+// @public
+export class QNameError extends TypeError {
+    // @internal
+    constructor(message: string);
+}
+
+// @public
 export class QNameFactory implements IQNameFactory {
-    // (undocumented)
     createQNameFromString(qname: string): QName;
-    // (undocumented)
     maybeCreateQNameFromString(qname: string): QName | null;
-    // (undocumented)
     registerPrefix(prefix: string, namespace: string): void;
 }
 

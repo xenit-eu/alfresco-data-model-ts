@@ -1,22 +1,34 @@
-import IQNameFactory from '../model/IQNameFactory';
+import IQNameFactory, { QNameError } from '../model/IQNameFactory';
 import QName, { factorySymbol } from '../model/QName';
 
-class QNameError extends TypeError {
-    public constructor(message: string) {
-        super(message);
-        Object.setPrototypeOf(this, new.target.prototype);
-        this.name = new.target.name;
-    }
-}
-
 /**
+ * Creates QNames from strings
  * @public
  */
 export default class QNameFactory implements IQNameFactory {
     private prefixToNamespace: { [pfx: string]: string } = {};
     private namespaceToPrefix: { [ns: string]: string } = {};
 
+    /**
+     * Registers a new valid prefix and namespace
+     *
+     * It is allowed to register the same namespace with multiple different prefixes.
+     * These prefixes will be considered equivalent, but only the last registered prefix will be used when generating QNames.
+     *
+     * @param prefix - The prefix to register
+     * @param namespace - The namespace to register and associate with the prefix
+     * @throws {@link QNameError}
+     * This exception is thrown when a prefix is already configured and would be overwritten with a different namespace URI
+     */
     public registerPrefix(prefix: string, namespace: string) {
+        const existingNamespace = this.prefixToNamespace[prefix];
+        if (existingNamespace && existingNamespace !== namespace) {
+            throw new QNameError(
+                'Prefix ' +
+                    prefix +
+                    ' is already registered with an other namespace'
+            );
+        }
         this.prefixToNamespace[prefix] = namespace;
         this.namespaceToPrefix[namespace] = prefix;
     }
@@ -50,6 +62,9 @@ export default class QNameFactory implements IQNameFactory {
         };
     }
 
+    /**
+     * {@inheritDoc IQNameFactory.createQNameFromString}
+     */
     public createQNameFromString(qname: string): QName {
         if (qname[0] === '{') {
             // Long Qname
@@ -66,6 +81,9 @@ export default class QNameFactory implements IQNameFactory {
         }
     }
 
+    /**
+     * {@inheritDoc IQNameFactory.maybeCreateQNameFromString}
+     */
     public maybeCreateQNameFromString(qname: string): QName | null {
         try {
             return this.createQNameFromString(qname);

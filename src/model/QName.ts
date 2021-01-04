@@ -5,23 +5,55 @@ import IQNameFactory from './IQNameFactory';
 export const factorySymbol = Symbol('QNameFactory');
 
 /**
+ * A QName is the fully qualified name of a type, aspect, property, association, ...
+ *
+ * A QName consists of a namespace URI, a prefix (that is a shorter alias for the namespace URI) and a local name.
  * @public
  */
 interface QName {
-    readonly prefix: string;
+    /**
+     * Namespace URI of the QName
+     */
     readonly namespaceURI: string;
+    /**
+     * Namespace prefix of the QName
+     */
+    readonly prefix: string;
+
+    /**
+     * Local name of the QName
+     */
     readonly localName: string;
 
+    /**
+     * Internal reference to the factory that created the QName
+     */
     readonly [factorySymbol]: IQNameFactory;
 }
 
 /**
+ * Functions that operate on a QName instance
  * @public
  */
 namespace QName {
+    /**
+     * Creates a fully-qualified string of a QName
+     *
+     * A fully-qualified string consists of the namespace URI and the local name of the QName
+     *
+     * @param qname - The QName to convert to a string
+     */
     export function toString(qname: QName): string {
         return '{' + qname.namespaceURI + '}' + qname.localName;
     }
+
+    /**
+     * Creates a prefix string of a QName
+     *
+     * A prefix string consists of the prefix and the local name of the QName
+     *
+     * @param qname - The QName to convert to a string
+     */
     export function toPrefixString(qname: QName): string {
         return qname.prefix + ':' + qname.localName;
     }
@@ -33,6 +65,11 @@ namespace QName {
         return oldQName[factorySymbol].maybeCreateQNameFromString(qnameString);
     }
 
+    /**
+     * Checks if two QNames are equal.
+     * @param a - The first QName to compare
+     * @param b - The second QName to compare. This may also be a string, in which case it will be parsed as a QName.
+     */
     export function equals(
         a: QName | null | undefined,
         b: QName | string | null | undefined
@@ -49,6 +86,10 @@ namespace QName {
         return a.localName === b.localName && a.namespaceURI === b.namespaceURI;
     }
 
+    /**
+     * Checks if something is a QName object
+     * @param a - Something to check
+     */
     export function isInstance(a: any): a is QName {
         return typeof a === 'object' && !!a[factorySymbol];
     }
@@ -58,7 +99,10 @@ export default QName;
 
 const typeTagSymbol = Symbol();
 
-// @internal
+/**
+ * Type tag that indicates what the QName refers to
+ * @internal
+ */
 export enum QNameTypeTag {
     CLASS,
     ASSOCIATION,
@@ -68,21 +112,34 @@ export enum QNameTypeTag {
     UNKNOWN,
 }
 
+/**
+ * A QName with an embedded type tag that indicates what the QName refers to
+ */
 interface QNameWithTypeTag<T extends QNameTypeTag = QNameTypeTag>
     extends QName {
     // @internal
     readonly [typeTagSymbol]: T;
 }
 
+/**
+ * Consumer-side for a QName with an embedded type tag
+ *
+ * This also allows for a plain QName without a type tag or a QName with an unkown type tag to be used.
+ */
 export type QNameWithTypeTagConsumer<T extends QNameTypeTag> =
     | QName
     | QNameWithTypeTag<T | QNameTypeTag.UNKNOWN>;
 
+/**
+ * Functions to operate on QNames with a type tag
+ * @internal
+ */
 namespace QNameWithTypeTag {
     export function addTag<T extends QNameTypeTag>(
         q: QName,
         tag: T
     ): QNameWithTypeTag<T> {
+        invariant(QName.isInstance(q));
         if (!isInstance(q) || hasTag(q, QNameTypeTag.UNKNOWN)) {
             return {
                 ...q,
@@ -102,6 +159,7 @@ namespace QNameWithTypeTag {
         q: QName,
         tag: T
     ): q is QNameWithTypeTag<T> {
+        invariant(QName.isInstance(q));
         if (!isInstance(q)) {
             return true;
         }
@@ -116,6 +174,7 @@ namespace QNameWithTypeTag {
         q: QName,
         tag: T
     ): asserts q is QNameWithTypeTag<T> {
+        invariant(QName.isInstance(q));
         if (!isInstance(q)) return;
         invariant(
             hasTag(q, tag),

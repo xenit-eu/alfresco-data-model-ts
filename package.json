@@ -1,6 +1,6 @@
 {
   "name": "@xenit/alfresco-data-model",
-  "version": "0.2.0",
+  "version": "0.0.0",
   "license": "LGPL-3.0-or-later",
   "author": {
     "name": "Xenit",
@@ -23,6 +23,7 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "api-extractor": "tsc -p . --outDir temp/build --declaration && api-extractor run",
+    "docs": "npm run api-extractor && api-documenter markdown --input temp --output-folder docs",
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "npm run build && npm run api-extractor"
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@microsoft/api-documenter": "^7.12.1",
     "@microsoft/api-extractor": "^7.12.1",
     "@types/jest": "^25.1.4",
     "husky": "^4.2.3",

@@ -10,86 +10,23 @@ import {
     QNameTypeTag,
     QNameWithTypeTag,
 } from '../model/QName';
-import IDictionary from './IDictionary';
+import IDictionary, {
+    DictionaryCircularDependencyError,
+    DictionaryMissingDependencyError,
+} from './IDictionary';
 import QNameCache from './QNameCache';
 import QNameMap from './QNameMap';
 
-/**
- * @public
- */
-export class DictionaryError extends Error {
-    /**
-     * @internal
-     */
-    public constructor(public readonly reference: QName, message: string) {
-        super(message);
-        Object.setPrototypeOf(this, new.target.prototype);
-        this.name = new.target.name;
-    }
-}
-
-/**
- * @public
- */
-export class DictionaryCircularDependencyError extends DictionaryError {
-    /**
-     * @internal
-     */
-    public constructor(
-        reference: QName,
-        public readonly path: readonly QName[]
-    ) {
-        super(
-            reference,
-            'Circular dependency on class ' +
-                QName.toPrefixString(reference) +
-                ': ' +
-                makeUnique2(path, QName.equals)
-                    .concat([reference])
-                    .map(c => QName.toPrefixString(c))
-                    .join(' -> ')
-        );
-        Object.setPrototypeOf(this, new.target.prototype);
-        this.name = new.target.name;
-    }
-}
-
-/**
- * @public
- */
-export class DictionaryMissingDependencyError extends DictionaryError {
-    /**
-     * @internal
-     */
-    public constructor(reference: QName, public readonly referrer: QName) {
-        super(
-            reference,
-            'Class ' +
-                QName.toPrefixString(reference) +
-                ' (referred to by ' +
-                QName.toPrefixString(referrer) +
-                ') does not exist.'
-        );
-        Object.setPrototypeOf(this, new.target.prototype);
-        this.name = new.target.name;
-    }
-}
 /**
  * Remove duplicates out of the array, preferring the first occurence of an item
  */
 function makeUnique<T>(items: readonly T[]): T[] {
     return items.filter((value, i, arr) => arr.indexOf(value) === i);
 }
-function makeUnique2<T>(
-    items: readonly T[],
-    cmp: (a: T, b: T) => boolean
-): T[] {
-    return items.filter(
-        (value, i, arr) => arr.findIndex(value2 => cmp(value, value2)) === i
-    );
-}
 
 /**
+ * Dictionary implementation that keeps all classes, properties and associations in-memory
+ *
  * @public
  */
 export default class Dictionary implements IDictionary {
@@ -108,6 +45,14 @@ export default class Dictionary implements IDictionary {
         PropertyDefinition
     > = new QNameCache();
 
+    /**
+     * Creates the dictionary
+     *
+     * @param classes - All datamodel classes (both types and aspects)
+     * @param properties - All datamodel properties
+     * @param associations - All datamodel associations
+     * @param qnameFactory - A {@link IQNameFactory} that is used to create QNames on-demand when necessary
+     */
     public constructor(
         classes: readonly ClassDefinition[],
         properties: readonly PropertyDefinition[],
@@ -118,6 +63,10 @@ export default class Dictionary implements IDictionary {
         this.properties = new QNameMap(properties);
         this.associations = new QNameMap(associations);
     }
+
+    /**
+     * {@inheritDoc IDictionary.getClass}
+     */
     public getClass(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): ClassDefinition | null {
@@ -125,6 +74,9 @@ export default class Dictionary implements IDictionary {
         return this.classes.lookup(qname);
     }
 
+    /**
+     * {@inheritDoc IDictionary.getProperty}
+     */
     public getProperty(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>
     ): PropertyDefinition {
@@ -162,6 +114,9 @@ export default class Dictionary implements IDictionary {
         return residualProp;
     }
 
+    /**
+     * {@inheritDoc IDictionary.getAssociation}
+     */
     public getAssociation(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>
     ): AssociationDefinition | null {
@@ -169,6 +124,9 @@ export default class Dictionary implements IDictionary {
         return this.associations.lookup(qname);
     }
 
+    /**
+     * {@inheritDoc IDictionary.getAllClassesForClass}
+     */
     public getAllClassesForClass(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): ClassDefinition[] {
@@ -199,6 +157,9 @@ export default class Dictionary implements IDictionary {
         return makeUnique(allClasses);
     }
 
+    /**
+     * {@inheritDoc IDictionary.getAllPropertiesForClass}
+     */
     public getAllPropertiesForClass(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): PropertyDefinition[] {
@@ -211,6 +172,9 @@ export default class Dictionary implements IDictionary {
             .map(p => this.getProperty(p));
     }
 
+    /**
+     * {@inheritDoc IDictionary.getAllAssociationsForClass}
+     */
     public getAllAssociationsForClass(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): AssociationDefinition[] {
@@ -223,6 +187,9 @@ export default class Dictionary implements IDictionary {
             .map(a => this.getAssociation(a)!);
     }
 
+    /**
+     * {@inheritDoc IDictionary.getParentsForClass}
+     */
     public getParentsForClass(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): ClassDefinition[] {
@@ -263,6 +230,9 @@ export default class Dictionary implements IDictionary {
         return parents;
     }
 
+    /**
+     * {@inheritDoc IDictionary.getMandatoryAspectsForClass}
+     */
     public getMandatoryAspectsForClass(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): ClassDefinition[] {
@@ -279,6 +249,9 @@ export default class Dictionary implements IDictionary {
         return makeUnique(allMandatoryAspects);
     }
 
+    /**
+     * {@inheritDoc IDictionary.getChildrenForClass}
+     */
     public getChildrenForClass(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): ClassDefinition[] {
