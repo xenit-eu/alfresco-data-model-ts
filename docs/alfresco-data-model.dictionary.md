@@ -27,10 +27,12 @@ export default class Dictionary implements IDictionary
 |  [getAllClassesForClass(qname)](./alfresco-data-model.dictionary.getallclassesforclass.md) |  | Retrieves all classes that are present on a node of a certain class, either directly, through inheritance or through specified mandatory aspects.<!-- -->The returned classes are ordered in inheritance order (parents first), with mandatory aspects of a class immediately after the class that declares them. |
 |  [getAllPropertiesForClass(qname)](./alfresco-data-model.dictionary.getallpropertiesforclass.md) |  | Retrieves all properties that are present on a node of a certain class, including inherited properties and properties on mandatory aspects<!-- -->The properties are returned from this function are ordered by the class in which they appear, then in the order that they are declared in the class. |
 |  [getAssociation(qname)](./alfresco-data-model.dictionary.getassociation.md) |  | Retrieves an association definition by it's qname |
+|  [getAssociations()](./alfresco-data-model.dictionary.getassociations.md) |  | Retrieves all known associations |
 |  [getChildrenForClass(qname)](./alfresco-data-model.dictionary.getchildrenforclass.md) |  | Retrieves all child classes.<!-- -->A child class is any class that has the requested class somewhere in the parent chain.<!-- -->The returned classes are in no particular order. |
 |  [getClass(qname)](./alfresco-data-model.dictionary.getclass.md) |  | Retrieves a type or aspect definition by it's qname |
 |  [getClasses()](./alfresco-data-model.dictionary.getclasses.md) |  | Retrieves all known classes |
 |  [getMandatoryAspectsForClass(qname)](./alfresco-data-model.dictionary.getmandatoryaspectsforclass.md) |  | Retrieves all mandatory aspects of a class, direct, inherited through parents or through mandatory aspects.<!-- -->The returned classes are ordered in declaration order on the specified object, then in inheritance order with parents first.<!-- -->Note that an aspect is also allowed to specify mandatory aspects and a parent aspect. |
 |  [getParentsForClass(qname)](./alfresco-data-model.dictionary.getparentsforclass.md) |  | Retrieves all parent classes.<!-- -->The returned classes are ordered in inheritance order with parents first. |
+|  [getProperties()](./alfresco-data-model.dictionary.getproperties.md) |  | Retrieves all known properties |
 |  [getProperty(qname)](./alfresco-data-model.dictionary.getproperty.md) |  | Retrieves a property definition by it's qname |
 

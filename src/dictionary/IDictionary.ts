@@ -135,6 +135,13 @@ export default interface IDictionary {
     ): PropertyDefinition;
 
     /**
+     * Retrieves all known properties
+     *
+     * @returns A list of all known property definitions
+     */
+    getProperties(): readonly PropertyDefinition[];
+
+    /**
      * Retrieves an association definition by it's qname
      *
      * @param qname - The qualified name of the association to fetch
@@ -143,6 +150,13 @@ export default interface IDictionary {
     getAssociation(
         qname: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>
     ): AssociationDefinition | null;
+
+    /**
+     * Retrieves all known associations
+     *
+     * @returns A list of all known association definitions
+     */
+    getAssociations(): readonly AssociationDefinition[];
 
     /**
      * Retrieves all properties that are present on a node of a certain class, including inherited properties and properties on mandatory aspects

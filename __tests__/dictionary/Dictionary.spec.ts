@@ -381,6 +381,23 @@ describe('Dictionary', () => {
         ).toBe(null);
     });
 
+    it('#getClasses()', () => {
+        const classes = dictionary.getClasses();
+        expect(classes.map(c => QName.toPrefixString(c.name)).sort()).toEqual([
+            'sys:base',
+            'sys:referenceable',
+            'sys:localized',
+            'cm:cmobject',
+            'cm:auditable',
+            'cm:folder',
+            'cm:content',
+            'cm:titled',
+            'cm:author',
+            'cm:dublincore',
+            'test:testClass'
+        ].sort());
+    });
+
     it('#getProperty()', () => {
         const prop = dictionary.getProperty(
             qnameFactory.createQNameFromString('cm:name')
@@ -412,6 +429,13 @@ describe('Dictionary', () => {
         );
     });
 
+    it('#getProperties()', () => {
+        const props = dictionary.getProperties();
+        expect(props.map(p => QName.toPrefixString(p.name))).toEqual([
+            'cm:name'
+        ]);
+    });
+
     it('#getAssociation()', () => {
         const assoc = dictionary.getAssociation(
             qnameFactory.createQNameFromString('cm:contains')
@@ -430,6 +454,13 @@ describe('Dictionary', () => {
                 qnameFactory.createQNameFromString('cm:nonexistent')
             )
         ).toBe(null);
+    });
+
+    it('#getAssociations()', () => {
+        const assocs = dictionary.getAssociations();
+        expect(assocs.map(a => QName.toPrefixString(a.name))).toEqual([
+            'cm:contains'
+        ]);
     });
 
     it('#getAllClassesForClass()', () => {

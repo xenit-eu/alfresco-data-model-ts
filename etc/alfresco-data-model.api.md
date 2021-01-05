@@ -50,11 +50,13 @@ export class Dictionary implements IDictionary {
     getAllClassesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getAllPropertiesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): PropertyDefinition[];
     getAssociation(qname: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>): AssociationDefinition | null;
+    getAssociations(): readonly AssociationDefinition[];
     getChildrenForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition | null;
     getClasses(): readonly ClassDefinition[];
     getMandatoryAspectsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getParentsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
+    getProperties(): readonly PropertyDefinition[];
     getProperty(qname: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>): PropertyDefinition;
     }
 
@@ -88,11 +90,13 @@ export interface IDictionary {
     getAllClassesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getAllPropertiesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): PropertyDefinition[];
     getAssociation(qname: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>): AssociationDefinition | null;
+    getAssociations(): readonly AssociationDefinition[];
     getChildrenForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition | null;
     getClasses(): readonly ClassDefinition[];
     getMandatoryAspectsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getParentsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
+    getProperties(): readonly PropertyDefinition[];
     getProperty(qname: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>): PropertyDefinition;
 }
 

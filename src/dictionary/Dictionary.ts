@@ -112,6 +112,13 @@ export default class Dictionary implements IDictionary {
     }
 
     /**
+     * {@inheritDoc IDictionary.getProperties}
+     */
+    public getProperties(): readonly PropertyDefinition[] {
+        return this.properties.all();
+    }
+
+    /**
      * {@inheritDoc IDictionary.getAssociation}
      */
     public getAssociation(
@@ -119,6 +126,13 @@ export default class Dictionary implements IDictionary {
     ): AssociationDefinition | null {
         QNameWithTypeTag.assertTag(qname, QNameTypeTag.ASSOCIATION);
         return this.associations.lookup(qname);
+    }
+
+    /**
+     * {@inheritDoc IDictionary.getAssociations}
+     */
+    public getAssociations(): readonly AssociationDefinition[] {
+        return this.associations.all();
     }
 
     /**
