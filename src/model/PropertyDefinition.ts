@@ -97,24 +97,22 @@ interface AnyPropertyConstraint {
  */
 export interface ListPropertyConstraint extends AnyPropertyConstraint {
     readonly type: PropertyConstraintType.LIST;
-    readonly parameters: ListPropertyConstraintParameters;
-}
+    readonly parameters: {
+        /**
+         * Allowed values according to this list constraint.
+         */
+        readonly allowedValues: string[];
 
-interface ListPropertyConstraintParameters {
-    /**
-     * Allowed values according to this list constraint.
-     */
-    readonly allowedValues: string[];
+        /**
+         * If the allowed values are case-sensitively checked or not.
+         */
+        readonly caseSensitive: boolean;
 
-    /**
-     * If the allowed values are case-sensitively checked or not.
-     */
-    readonly caseSensitive: boolean;
-
-    /**
-     * Indicates of the list of allowed values is sorted or not.
-     */
-    readonly sorted: boolean;
+        /**
+         * Indicates of the list of allowed values is sorted or not.
+         */
+        readonly sorted: boolean;
+    };
 }
 
 /**
@@ -125,18 +123,16 @@ interface ListPropertyConstraintParameters {
  */
 export interface LengthPropertyConstraint extends AnyPropertyConstraint {
     readonly type: PropertyConstraintType.LENGTH;
-    readonly parameters: LengthPropertyConstraintParameters;
-}
-
-interface LengthPropertyConstraintParameters {
-    /**
-     * Minimum length of the string
-     */
-    readonly minLength: number;
-    /**
-     * Maximum length of the string
-     */
-    readonly maxLength: number;
+    readonly parameters: {
+        /**
+         * Minimum length of the string
+         */
+        readonly minLength: number;
+        /**
+         * Maximum length of the string
+         */
+        readonly maxLength: number;
+    };
 }
 
 /**
@@ -147,19 +143,17 @@ interface LengthPropertyConstraintParameters {
  */
 export interface NumericRangePropertyConstraint extends AnyPropertyConstraint {
     readonly type: PropertyConstraintType.MINMAX;
-    readonly parameters: NumericRangePropertyConstraintParameters;
-}
+    readonly parameters: {
+        /**
+         * Minimum allowed value of the property value
+         */
+        readonly minValue: number;
 
-interface NumericRangePropertyConstraintParameters {
-    /**
-     * Minimum allowed value of the property value
-     */
-    readonly minValue: number;
-
-    /**
-     * Maximum allowed value of the property value
-     */
-    readonly maxValue: number;
+        /**
+         * Maximum allowed value of the property value
+         */
+        readonly maxValue: number;
+    };
 }
 
 /**
@@ -168,18 +162,16 @@ interface NumericRangePropertyConstraintParameters {
  */
 export interface RegexPropertyConstraint extends AnyPropertyConstraint {
     readonly type: PropertyConstraintType.REGEX;
-    readonly parameters: RegexPropertyConstraintParameters;
-}
+    readonly parameters: {
+        /**
+         * Regular expression against which a property value is checked
+         */
+        readonly expression: string;
 
-interface RegexPropertyConstraintParameters {
-    /**
-     * Regular expression against which a property value is checked
-     */
-    readonly expression: string;
-
-    /**
-     * True if the property value must match the regular expression to be valid
-     * False if the property value must not match the regular expression to be valid
-     */
-    readonly requiresMatch: boolean;
+        /**
+         * True if the property value must match the regular expression to be valid
+         * False if the property value must not match the regular expression to be valid
+         */
+        readonly requiresMatch: boolean;
+    };
 }

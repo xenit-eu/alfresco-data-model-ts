@@ -7,5 +7,8 @@
 <b>Signature:</b>
 
 ```typescript
-readonly parameters: RegexPropertyConstraintParameters;
+readonly parameters: {
+        readonly expression: string;
+        readonly requiresMatch: boolean;
+    };
 ```

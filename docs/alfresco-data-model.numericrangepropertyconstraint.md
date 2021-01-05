@@ -19,6 +19,6 @@ export interface NumericRangePropertyConstraint extends AnyPropertyConstraint
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [parameters](./alfresco-data-model.numericrangepropertyconstraint.parameters.md) | NumericRangePropertyConstraintParameters |  |
+|  [parameters](./alfresco-data-model.numericrangepropertyconstraint.parameters.md) | { readonly minValue: number; readonly maxValue: number; } |  |
 |  [type](./alfresco-data-model.numericrangepropertyconstraint.type.md) | [PropertyConstraintType.MINMAX](./alfresco-data-model.propertyconstrainttype.minmax.md) |  |
 

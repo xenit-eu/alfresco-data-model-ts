@@ -7,5 +7,8 @@
 <b>Signature:</b>
 
 ```typescript
-readonly parameters: LengthPropertyConstraintParameters;
+readonly parameters: {
+        readonly minLength: number;
+        readonly maxLength: number;
+    };
 ```

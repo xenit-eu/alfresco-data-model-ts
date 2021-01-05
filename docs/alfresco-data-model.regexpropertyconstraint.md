@@ -17,6 +17,6 @@ export interface RegexPropertyConstraint extends AnyPropertyConstraint
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [parameters](./alfresco-data-model.regexpropertyconstraint.parameters.md) | RegexPropertyConstraintParameters |  |
+|  [parameters](./alfresco-data-model.regexpropertyconstraint.parameters.md) | { readonly expression: string; readonly requiresMatch: boolean; } |  |
 |  [type](./alfresco-data-model.regexpropertyconstraint.type.md) | [PropertyConstraintType.REGEX](./alfresco-data-model.propertyconstrainttype.regex.md) |  |
 

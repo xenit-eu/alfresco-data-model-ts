@@ -19,6 +19,6 @@ export interface ListPropertyConstraint extends AnyPropertyConstraint
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [parameters](./alfresco-data-model.listpropertyconstraint.parameters.md) | ListPropertyConstraintParameters |  |
+|  [parameters](./alfresco-data-model.listpropertyconstraint.parameters.md) | { readonly allowedValues: string\[\]; readonly caseSensitive: boolean; readonly sorted: boolean; } |  |
 |  [type](./alfresco-data-model.listpropertyconstraint.type.md) | [PropertyConstraintType.LIST](./alfresco-data-model.propertyconstrainttype.list.md) |  |
 

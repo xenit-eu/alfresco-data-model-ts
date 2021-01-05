@@ -7,5 +7,9 @@
 <b>Signature:</b>
 
 ```typescript
-readonly parameters: ListPropertyConstraintParameters;
+readonly parameters: {
+        readonly allowedValues: string[];
+        readonly caseSensitive: boolean;
+        readonly sorted: boolean;
+    };
 ```

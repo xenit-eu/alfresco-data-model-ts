@@ -19,6 +19,6 @@ export interface LengthPropertyConstraint extends AnyPropertyConstraint
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [parameters](./alfresco-data-model.lengthpropertyconstraint.parameters.md) | LengthPropertyConstraintParameters |  |
+|  [parameters](./alfresco-data-model.lengthpropertyconstraint.parameters.md) | { readonly minLength: number; readonly maxLength: number; } |  |
 |  [type](./alfresco-data-model.lengthpropertyconstraint.type.md) | [PropertyConstraintType.LENGTH](./alfresco-data-model.propertyconstrainttype.length.md) |  |
 

@@ -92,30 +92,34 @@ export interface IQNameFactory {
 //
 // @public
 export interface LengthPropertyConstraint extends AnyPropertyConstraint {
-    // Warning: (ae-forgotten-export) The symbol "LengthPropertyConstraintParameters" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    readonly parameters: LengthPropertyConstraintParameters;
+    readonly parameters: {
+        readonly minLength: number;
+        readonly maxLength: number;
+    };
     // (undocumented)
     readonly type: PropertyConstraintType.LENGTH;
 }
 
 // @public
 export interface ListPropertyConstraint extends AnyPropertyConstraint {
-    // Warning: (ae-forgotten-export) The symbol "ListPropertyConstraintParameters" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    readonly parameters: ListPropertyConstraintParameters;
+    readonly parameters: {
+        readonly allowedValues: string[];
+        readonly caseSensitive: boolean;
+        readonly sorted: boolean;
+    };
     // (undocumented)
     readonly type: PropertyConstraintType.LIST;
 }
 
 // @public
 export interface NumericRangePropertyConstraint extends AnyPropertyConstraint {
-    // Warning: (ae-forgotten-export) The symbol "NumericRangePropertyConstraintParameters" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    readonly parameters: NumericRangePropertyConstraintParameters;
+    readonly parameters: {
+        readonly minValue: number;
+        readonly maxValue: number;
+    };
     // (undocumented)
     readonly type: PropertyConstraintType.MINMAX;
 }
@@ -179,10 +183,11 @@ export class QNameFactory implements IQNameFactory {
 
 // @public
 export interface RegexPropertyConstraint extends AnyPropertyConstraint {
-    // Warning: (ae-forgotten-export) The symbol "RegexPropertyConstraintParameters" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
-    readonly parameters: RegexPropertyConstraintParameters;
+    readonly parameters: {
+        readonly expression: string;
+        readonly requiresMatch: boolean;
+    };
     // (undocumented)
     readonly type: PropertyConstraintType.REGEX;
 }
