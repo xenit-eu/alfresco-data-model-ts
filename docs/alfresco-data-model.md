@@ -15,6 +15,12 @@
 |  [QNameError](./alfresco-data-model.qnameerror.md) | An error thrown when a QName can not be created from a string |
 |  [QNameFactory](./alfresco-data-model.qnamefactory.md) | Creates QNames from strings |
 
+## Enumerations
+
+|  Enumeration | Description |
+|  --- | --- |
+|  [PropertyConstraintType](./alfresco-data-model.propertyconstrainttype.md) | Known property constraint types |
+
 ## Interfaces
 
 |  Interface | Description |
@@ -23,12 +29,22 @@
 |  [ClassDefinition](./alfresco-data-model.classdefinition.md) | Describes a class for a node.<!-- -->A class is a type or an aspect that can be applied to a node. |
 |  [IDictionary](./alfresco-data-model.idictionary.md) | Metadata Model Dictionary that provides access to metadata models |
 |  [IQNameFactory](./alfresco-data-model.iqnamefactory.md) | Factory that creates QName objects from fully-qualified QName strings or prefixed QName strings. |
+|  [LengthPropertyConstraint](./alfresco-data-model.lengthpropertyconstraint.md) | String length constraint<!-- -->Requires the length of the property to be between two bounds. |
+|  [ListPropertyConstraint](./alfresco-data-model.listpropertyconstraint.md) | List constraint<!-- -->A list constraint specifies a number of allowed values for a property |
+|  [NumericRangePropertyConstraint](./alfresco-data-model.numericrangepropertyconstraint.md) | Numeric range constraint<!-- -->Requires a numeric value to be between two bounds. |
 |  [PropertyDefinition](./alfresco-data-model.propertydefinition.md) | Describes a property of a node.<!-- -->A property is metadata of a certain type that belongs to a node. |
 |  [QName](./alfresco-data-model.qname.md) | A QName is the fully qualified name of a type, aspect, property, association, ...<!-- -->A QName consists of a namespace URI, a prefix (that is a shorter alias for the namespace URI) and a local name. |
+|  [RegexPropertyConstraint](./alfresco-data-model.regexpropertyconstraint.md) | A regex constraint specifies allowed values for a property based on a regex match |
 
 ## Namespaces
 
 |  Namespace | Description |
 |  --- | --- |
 |  [QName](./alfresco-data-model.qname.md) | Functions that operate on a QName instance |
+
+## Type Aliases
+
+|  Type Alias | Description |
+|  --- | --- |
+|  [PropertyConstraint](./alfresco-data-model.propertyconstraint.md) | All property constraint possibilities. |
 

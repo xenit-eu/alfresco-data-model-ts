@@ -58,6 +58,7 @@ export default interface PropertyDefinition
 
 /**
  * Known property constraint types
+ * @public
  */
 export enum PropertyConstraintType {
     LIST = 'LIST',
@@ -68,6 +69,7 @@ export enum PropertyConstraintType {
 
 /**
  * All property constraint possibilities.
+ * @public
  */
 export type PropertyConstraint =
     | AnyPropertyConstraint
@@ -91,6 +93,7 @@ interface AnyPropertyConstraint {
  * List constraint
  *
  * A list constraint specifies a number of allowed values for a property
+ * @public
  */
 export interface ListPropertyConstraint extends AnyPropertyConstraint {
     readonly type: PropertyConstraintType.LIST;
@@ -118,6 +121,7 @@ interface ListPropertyConstraintParameters {
  * String length constraint
  *
  * Requires the length of the property to be between two bounds.
+ * @public
  */
 export interface LengthPropertyConstraint extends AnyPropertyConstraint {
     readonly type: PropertyConstraintType.LENGTH;
@@ -139,6 +143,7 @@ interface LengthPropertyConstraintParameters {
  * Numeric range constraint
  *
  * Requires a numeric value to be between two bounds.
+ * @public
  */
 export interface NumericRangePropertyConstraint extends AnyPropertyConstraint {
     readonly type: PropertyConstraintType.MINMAX;
@@ -159,6 +164,7 @@ interface NumericRangePropertyConstraintParameters {
 
 /**
  * A regex constraint specifies allowed values for a property based on a regex match
+ * @public
  */
 export interface RegexPropertyConstraint extends AnyPropertyConstraint {
     readonly type: PropertyConstraintType.REGEX;

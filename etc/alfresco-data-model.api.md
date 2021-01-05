@@ -88,9 +88,55 @@ export interface IQNameFactory {
     maybeCreateQNameFromString(qname: string): QName | null;
 }
 
+// Warning: (ae-forgotten-export) The symbol "AnyPropertyConstraint" needs to be exported by the entry point index.d.ts
+//
+// @public
+export interface LengthPropertyConstraint extends AnyPropertyConstraint {
+    // Warning: (ae-forgotten-export) The symbol "LengthPropertyConstraintParameters" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    readonly parameters: LengthPropertyConstraintParameters;
+    // (undocumented)
+    readonly type: PropertyConstraintType.LENGTH;
+}
+
+// @public
+export interface ListPropertyConstraint extends AnyPropertyConstraint {
+    // Warning: (ae-forgotten-export) The symbol "ListPropertyConstraintParameters" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    readonly parameters: ListPropertyConstraintParameters;
+    // (undocumented)
+    readonly type: PropertyConstraintType.LIST;
+}
+
+// @public
+export interface NumericRangePropertyConstraint extends AnyPropertyConstraint {
+    // Warning: (ae-forgotten-export) The symbol "NumericRangePropertyConstraintParameters" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    readonly parameters: NumericRangePropertyConstraintParameters;
+    // (undocumented)
+    readonly type: PropertyConstraintType.MINMAX;
+}
+
+// @public
+export type PropertyConstraint = AnyPropertyConstraint | ListPropertyConstraint | LengthPropertyConstraint | NumericRangePropertyConstraint | RegexPropertyConstraint;
+
+// @public
+export enum PropertyConstraintType {
+    // (undocumented)
+    LENGTH = "LENGTH",
+    // (undocumented)
+    LIST = "LIST",
+    // (undocumented)
+    MINMAX = "MINMAX",
+    // (undocumented)
+    REGEX = "REGEX"
+}
+
 // @public
 export interface PropertyDefinition extends DictionaryDefinition<QNameTypeTag.PROPERTY> {
-    // Warning: (ae-forgotten-export) The symbol "PropertyConstraint" needs to be exported by the entry point index.d.ts
     readonly constraints: readonly PropertyConstraint[];
     readonly container: QNameWithTypeTag<QNameTypeTag.CLASS>;
     readonly dataType: QNameWithTypeTag<QNameTypeTag.DATA_TYPE>;
@@ -129,6 +175,16 @@ export class QNameFactory implements IQNameFactory {
     createQNameFromString(qname: string): QName;
     maybeCreateQNameFromString(qname: string): QName | null;
     registerPrefix(prefix: string, namespace: string): void;
+}
+
+// @public
+export interface RegexPropertyConstraint extends AnyPropertyConstraint {
+    // Warning: (ae-forgotten-export) The symbol "RegexPropertyConstraintParameters" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    readonly parameters: RegexPropertyConstraintParameters;
+    // (undocumented)
+    readonly type: PropertyConstraintType.REGEX;
 }
 
 

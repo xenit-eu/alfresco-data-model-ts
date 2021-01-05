@@ -19,7 +19,7 @@ export default interface PropertyDefinition extends DictionaryDefinition<QNameTy
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [constraints](./alfresco-data-model.propertydefinition.constraints.md) | readonly PropertyConstraint\[\] | Constraints that are applied to this property.<!-- -->Constraints limit the allowable values of a property. |
+|  [constraints](./alfresco-data-model.propertydefinition.constraints.md) | readonly [PropertyConstraint](./alfresco-data-model.propertyconstraint.md)<!-- -->\[\] | Constraints that are applied to this property.<!-- -->Constraints limit the allowable values of a property. |
 |  [container](./alfresco-data-model.propertydefinition.container.md) | QNameWithTypeTag&lt;QNameTypeTag.CLASS&gt; | The class (type or aspect) that defines this property |
 |  [dataType](./alfresco-data-model.propertydefinition.datatype.md) | QNameWithTypeTag&lt;QNameTypeTag.DATA\_TYPE&gt; | The datatype for the property. |
 |  [defaultValue](./alfresco-data-model.propertydefinition.defaultvalue.md) | string \| null | The default value for the property (if any) in stringified format. |
