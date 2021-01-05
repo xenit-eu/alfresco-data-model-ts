@@ -97,26 +97,16 @@ export default class Dictionary implements IDictionary {
             return prop;
         }
 
-        const residualProp = {
-            name: QNameWithTypeTag.addTag(qname, QNameTypeTag.PROPERTY),
-            container: QNameWithTypeTag.addTag(
-                this.qnameFactory.createQNameFromString('sys:base'),
-                QNameTypeTag.CLASS
-            ),
-            dataType: QNameWithTypeTag.addTag(
-                this.qnameFactory.createQNameFromString('d:any'),
-                QNameTypeTag.DATA_TYPE
-            ),
-            title: qname.localName,
-            constraints: [],
-            defaultValue: null,
-            description: 'Residual property ' + QName.toPrefixString(qname),
-            mandatory: false,
-            mandatoryEnforced: false,
-            multiValued: true,
-            protected: false,
-            residual: true,
-        };
+        const residualProp = PropertyDefinition.builder(
+            qname,
+            this.qnameFactory.createQNameFromString('sys:base'),
+            this.qnameFactory.createQNameFromString('d:any')
+        )
+            .withDescription('Residual property ' + QName.toPrefixString(qname))
+            .withMultiValued(true)
+            .withResidual(true)
+            .build();
+
         this.residualPropertiesCache.put(qname, residualProp);
         return residualProp;
     }
