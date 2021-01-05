@@ -118,6 +118,13 @@ export default interface IDictionary {
     ): ClassDefinition | null;
 
     /**
+     * Retrieves all known classes
+     *
+     * @returns A list of all class definitions
+     */
+    getClasses(): readonly ClassDefinition[];
+
+    /**
      * Retrieves a property definition by it's qname
      *
      * @param qname - The qualified name of the property to fetch

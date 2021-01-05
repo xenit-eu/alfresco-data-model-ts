@@ -52,6 +52,7 @@ export class Dictionary implements IDictionary {
     getAssociation(qname: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>): AssociationDefinition | null;
     getChildrenForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition | null;
+    getClasses(): readonly ClassDefinition[];
     getMandatoryAspectsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getParentsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getProperty(qname: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>): PropertyDefinition;
@@ -89,6 +90,7 @@ export interface IDictionary {
     getAssociation(qname: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>): AssociationDefinition | null;
     getChildrenForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition | null;
+    getClasses(): readonly ClassDefinition[];
     getMandatoryAspectsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getParentsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getProperty(qname: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>): PropertyDefinition;

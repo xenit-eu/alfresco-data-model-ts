@@ -22,6 +22,7 @@ export default interface IDictionary
 |  [getAssociation(qname)](./alfresco-data-model.idictionary.getassociation.md) | Retrieves an association definition by it's qname |
 |  [getChildrenForClass(qname)](./alfresco-data-model.idictionary.getchildrenforclass.md) | Retrieves all child classes.<!-- -->A child class is any class that has the requested class somewhere in the parent chain.<!-- -->The returned classes are in no particular order. |
 |  [getClass(qname)](./alfresco-data-model.idictionary.getclass.md) | Retrieves a type or aspect definition by it's qname |
+|  [getClasses()](./alfresco-data-model.idictionary.getclasses.md) | Retrieves all known classes |
 |  [getMandatoryAspectsForClass(qname)](./alfresco-data-model.idictionary.getmandatoryaspectsforclass.md) | Retrieves all mandatory aspects of a class, direct, inherited through parents or through mandatory aspects.<!-- -->The returned classes are ordered in declaration order on the specified object, then in inheritance order with parents first.<!-- -->Note that an aspect is also allowed to specify mandatory aspects and a parent aspect. |
 |  [getParentsForClass(qname)](./alfresco-data-model.idictionary.getparentsforclass.md) | Retrieves all parent classes.<!-- -->The returned classes are ordered in inheritance order with parents first. |
 |  [getProperty(qname)](./alfresco-data-model.idictionary.getproperty.md) | Retrieves a property definition by it's qname |

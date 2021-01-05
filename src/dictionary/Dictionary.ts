@@ -75,6 +75,13 @@ export default class Dictionary implements IDictionary {
     }
 
     /**
+     * {@inheritDoc IDictionary.getClasses}
+     */
+    public getClasses(): readonly ClassDefinition[] {
+        return this.classes.all();
+    }
+
+    /**
      * {@inheritDoc IDictionary.getProperty}
      */
     public getProperty(
