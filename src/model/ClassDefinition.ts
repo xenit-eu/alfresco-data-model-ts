@@ -1,5 +1,10 @@
-import { QNameTypeTag, QNameWithTypeTag } from './QName';
+import {
+    QNameTypeTag,
+    QNameWithTypeTag,
+    QNameWithTypeTagConsumer,
+} from './QName';
 import DictionaryDefinition from './DictionaryDefinition';
+import ClassDefinitionBuilder from './ClassDefinitionBuilder';
 
 /**
  * Describes a class for a node.
@@ -8,8 +13,7 @@ import DictionaryDefinition from './DictionaryDefinition';
  *
  * @public
  */
-export default interface ClassDefinition
-    extends DictionaryDefinition<QNameTypeTag.CLASS> {
+interface ClassDefinition extends DictionaryDefinition<QNameTypeTag.CLASS> {
     /**
      * Parent class from which this class inherits.
      *
@@ -47,3 +51,21 @@ export default interface ClassDefinition
         QNameTypeTag.ASSOCIATION
     >[];
 }
+
+/**
+ * @public
+ */
+namespace ClassDefinition {
+    /**
+     * Creates a builder for a {@link (ClassDefinition:interface)}
+     * @param name - The QName of the class
+     * @public
+     */
+    export function builder(
+        name: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
+    ): ClassDefinitionBuilder {
+        return new ClassDefinitionBuilder(name);
+    }
+}
+
+export default ClassDefinition;

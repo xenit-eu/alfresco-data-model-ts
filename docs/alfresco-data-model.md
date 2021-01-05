@@ -40,6 +40,9 @@
 
 |  Namespace | Description |
 |  --- | --- |
+|  [AssociationDefinition](./alfresco-data-model.associationdefinition.md) |  |
+|  [ClassDefinition](./alfresco-data-model.classdefinition.md) |  |
+|  [PropertyDefinition](./alfresco-data-model.propertydefinition.md) |  |
 |  [QName](./alfresco-data-model.qname.md) | Functions that operate on a QName instance |
 
 ## Type Aliases

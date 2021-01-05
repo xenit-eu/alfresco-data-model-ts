@@ -2,35 +2,18 @@
 
 [Home](./index.md) &gt; [@xenit/alfresco-data-model](./alfresco-data-model.md) &gt; [AssociationDefinition](./alfresco-data-model.associationdefinition.md)
 
-## AssociationDefinition interface
+## AssociationDefinition namespace
 
-Describes an association between two nodes
-
-An association is a link between two nodes.
-
-There are two kinds of associations: parent-child association and source-target association. Both are represented by the same structure, distinguished by the value of [AssociationDefinition.childAssociation](./alfresco-data-model.associationdefinition.childassociation.md)<!-- -->.
-
-The source and target of the association reference a class (type or aspect) which that side has to implement. Both sides of an association can be single- or multi-valued and can optionally be mandatory(enforced).
 
 <b>Signature:</b>
 
 ```typescript
-export default interface AssociationDefinition extends DictionaryDefinition<QNameTypeTag.ASSOCIATION> 
+declare namespace AssociationDefinition 
 ```
-<b>Extends:</b> DictionaryDefinition&lt;QNameTypeTag.ASSOCIATION&gt;
 
-## Properties
+## Functions
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [childAssociation](./alfresco-data-model.associationdefinition.childassociation.md) | boolean | If this association is a parent-child association instead of a source-target association. |
-|  [protected](./alfresco-data-model.associationdefinition.protected.md) | boolean | Marks the association as protected, meaning that it can only be updated by the system itself, not by users. |
-|  [sourceMandatory](./alfresco-data-model.associationdefinition.sourcemandatory.md) | boolean | If the source of the association is mandatory according to the datamodel. |
-|  [sourceMandatoryEnforced](./alfresco-data-model.associationdefinition.sourcemandatoryenforced.md) | boolean | If the mandatoryness of the source of the association is enforced.<!-- -->If true, data updates that would violate the requirement from [AssociationDefinition.sourceMandatory](./alfresco-data-model.associationdefinition.sourcemandatory.md) will be rejected. |
-|  [sourceMany](./alfresco-data-model.associationdefinition.sourcemany.md) | boolean | If the source of the association can be multiple nodes or not.<!-- -->If the source (parent) of a child association has multiple nodes, only one of those can be the primary parent association. |
-|  [sourceName](./alfresco-data-model.associationdefinition.sourcename.md) | QNameWithTypeTag&lt;QNameTypeTag.CLASS&gt; | The source class of the association. This is the side that defines the association in the Alfresco datamodel.<!-- -->For a source-target association, this is the source. For a parent-child association, this is the parent. |
-|  [targetMandatory](./alfresco-data-model.associationdefinition.targetmandatory.md) | boolean | If the target of the association is mandatory according to the datamodel. |
-|  [targetMandatoryEnforced](./alfresco-data-model.associationdefinition.targetmandatoryenforced.md) | boolean | If the mandatoryness of the target of the association is enforced.<!-- -->If true, data updates that would violate the requirement from [AssociationDefinition.targetMandatory](./alfresco-data-model.associationdefinition.targetmandatory.md) will be rejected. |
-|  [targetMany](./alfresco-data-model.associationdefinition.targetmany.md) | boolean | If the target of the association can be multiple nodes or not. |
-|  [targetName](./alfresco-data-model.associationdefinition.targetname.md) | QNameWithTypeTag&lt;QNameTypeTag.CLASS&gt; | The target class of the association.<!-- -->For a source-target association, this is the target. For a parent-child association, this is the child. |
+|  Function | Description |
+|  --- | --- |
+|  [builder(name, sourceName, targetName)](./alfresco-data-model.associationdefinition.builder.md) | Creates a builder for an [AssociationDefinition](./alfresco-data-model.associationdefinition.md) |
 

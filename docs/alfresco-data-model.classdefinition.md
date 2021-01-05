@@ -2,25 +2,18 @@
 
 [Home](./index.md) &gt; [@xenit/alfresco-data-model](./alfresco-data-model.md) &gt; [ClassDefinition](./alfresco-data-model.classdefinition.md)
 
-## ClassDefinition interface
+## ClassDefinition namespace
 
-Describes a class for a node.
-
-A class is a type or an aspect that can be applied to a node.
 
 <b>Signature:</b>
 
 ```typescript
-export default interface ClassDefinition extends DictionaryDefinition<QNameTypeTag.CLASS> 
+declare namespace ClassDefinition 
 ```
-<b>Extends:</b> DictionaryDefinition&lt;QNameTypeTag.CLASS&gt;
 
-## Properties
+## Functions
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [associations](./alfresco-data-model.classdefinition.associations.md) | readonly QNameWithTypeTag&lt;QNameTypeTag.ASSOCIATION&gt;\[\] | Associations that are declared by this class. |
-|  [mandatoryAspects](./alfresco-data-model.classdefinition.mandatoryaspects.md) | readonly QNameWithTypeTag&lt;QNameTypeTag.CLASS&gt;\[\] | Mandatory aspects for this class.<!-- -->Mandatory aspects are automatically also applied to a node when this class is applied. |
-|  [parent](./alfresco-data-model.classdefinition.parent.md) | QNameWithTypeTag&lt;QNameTypeTag.CLASS&gt; \| null | Parent class from which this class inherits.<!-- -->Similar to inheritance in code, a node that has this class applied also has the parent classes applied. |
-|  [properties](./alfresco-data-model.classdefinition.properties.md) | readonly QNameWithTypeTag&lt;QNameTypeTag.PROPERTY&gt;\[\] | Properties that are declared by this class. |
+|  Function | Description |
+|  --- | --- |
+|  [builder(name)](./alfresco-data-model.classdefinition.builder.md) | Creates a builder for a [ClassDefinition](./alfresco-data-model.classdefinition.md) |
 

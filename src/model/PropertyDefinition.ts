@@ -1,5 +1,10 @@
-import { QNameWithTypeTag, QNameTypeTag } from './QName';
+import {
+    QNameWithTypeTag,
+    QNameTypeTag,
+    QNameWithTypeTagConsumer,
+} from './QName';
 import DictionaryDefinition from './DictionaryDefinition';
+import PropertyDefinitionBuilder from './PropertyDefinitionBuilder';
 
 /**
  * Describes a property of a node.
@@ -8,7 +13,7 @@ import DictionaryDefinition from './DictionaryDefinition';
  *
  * @public
  */
-export default interface PropertyDefinition
+interface PropertyDefinition
     extends DictionaryDefinition<QNameTypeTag.PROPERTY> {
     /**
      * The class (type or aspect) that defines this property
@@ -35,7 +40,7 @@ export default interface PropertyDefinition
      */
     readonly mandatory: boolean;
     /**
-     * If true, data updates that would violate the mandatory requirement from {@link PropertyDefinition.mandatory} will be rejected.
+     * If true, data updates that would violate the mandatory requirement from {@link (PropertyDefinition:interface).mandatory} will be rejected.
      */
     readonly mandatoryEnforced: boolean;
     /**
@@ -55,6 +60,26 @@ export default interface PropertyDefinition
      */
     readonly constraints: readonly PropertyConstraint[];
 }
+
+/** @public */
+namespace PropertyDefinition {
+    /**
+     * Creates a builder for an {@link (PropertyDefinition:interface)}
+     * @param name - The QName of the property
+     * @param container - The QName of the class that contains the property
+     * @param dataType - The QName of data type of the property
+     * @public
+     */
+    export function builder(
+        name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>,
+        container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>,
+        dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE>
+    ): PropertyDefinitionBuilder {
+        return new PropertyDefinitionBuilder(name, container, dataType);
+    }
+}
+
+export default PropertyDefinition;
 
 /**
  * Known property constraint types

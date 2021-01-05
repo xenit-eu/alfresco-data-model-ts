@@ -22,12 +22,25 @@ export interface AssociationDefinition extends DictionaryDefinition<QNameTypeTag
     readonly targetName: QNameWithTypeTag<QNameTypeTag.CLASS>;
 }
 
+// @public (undocumented)
+export namespace AssociationDefinition {
+    // Warning: (ae-forgotten-export) The symbol "QNameWithTypeTagConsumer" needs to be exported by the entry point index.d.ts
+    // Warning: (ae-forgotten-export) The symbol "AssociationDefinitionBuilder" needs to be exported by the entry point index.d.ts
+    export function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>, sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>, targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): AssociationDefinitionBuilder;
+}
+
 // @public
 export interface ClassDefinition extends DictionaryDefinition<QNameTypeTag.CLASS> {
     readonly associations: readonly QNameWithTypeTag<QNameTypeTag.ASSOCIATION>[];
     readonly mandatoryAspects: readonly QNameWithTypeTag<QNameTypeTag.CLASS>[];
     readonly parent: QNameWithTypeTag<QNameTypeTag.CLASS> | null;
     readonly properties: readonly QNameWithTypeTag<QNameTypeTag.PROPERTY>[];
+}
+
+// @public (undocumented)
+export namespace ClassDefinition {
+    // Warning: (ae-forgotten-export) The symbol "ClassDefinitionBuilder" needs to be exported by the entry point index.d.ts
+    export function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinitionBuilder;
 }
 
 // @public
@@ -38,7 +51,6 @@ export class Dictionary implements IDictionary {
     getAllPropertiesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): PropertyDefinition[];
     getAssociation(qname: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>): AssociationDefinition | null;
     getChildrenForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
-    // Warning: (ae-forgotten-export) The symbol "QNameWithTypeTagConsumer" needs to be exported by the entry point index.d.ts
     getClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition | null;
     getMandatoryAspectsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getParentsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
@@ -150,6 +162,12 @@ export interface PropertyDefinition extends DictionaryDefinition<QNameTypeTag.PR
     readonly multiValued: boolean;
     readonly protected: boolean;
     readonly residual: boolean;
+}
+
+// @public (undocumented)
+export namespace PropertyDefinition {
+    // Warning: (ae-forgotten-export) The symbol "PropertyDefinitionBuilder" needs to be exported by the entry point index.d.ts
+    export function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>, container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>, dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE>): PropertyDefinitionBuilder;
 }
 
 // @public
