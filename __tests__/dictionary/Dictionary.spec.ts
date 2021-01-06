@@ -1,3 +1,4 @@
+import { ClassDefinition } from '../../src';
 import Dictionary from '../../src/dictionary/Dictionary';
 import IDictionary from '../../src/dictionary/IDictionary';
 import QNameFactory from '../../src/dictionary/QNameFactory';
@@ -21,27 +22,15 @@ describe('Dictionary', () => {
 
     const dictionary: IDictionary = new Dictionary(
         [
-            {
-                name: QNameWithTypeTag.addTag(
-                    qnameFactory.createQNameFromString('sys:base'),
-                    QNameTypeTag.CLASS
-                ),
-                title: 'System base',
-                description: 'System base object',
-                associations: [],
+            ClassDefinition.fromPlainModel({
+                name: qnameFactory.createQNameFromString("sys:base"),
+                title: "System base",
+                description: "System base object",
                 mandatoryAspects: [
-                    QNameWithTypeTag.addTag(
-                        qnameFactory.createQNameFromString('sys:referenceable'),
-                        QNameTypeTag.CLASS
-                    ),
-                    QNameWithTypeTag.addTag(
-                        qnameFactory.createQNameFromString('sys:localized'),
-                        QNameTypeTag.CLASS
-                    ),
-                ],
-                parent: null,
-                properties: [],
-            },
+                    'sys:referenceable',
+                    'sys:localized',
+                ]
+            }),
             {
                 name: QNameWithTypeTag.addTag(
                     qnameFactory.createQNameFromString('sys:referenceable'),

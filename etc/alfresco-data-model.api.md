@@ -26,7 +26,13 @@ export interface AssociationDefinition extends DictionaryDefinition<QNameTypeTag
 export namespace AssociationDefinition {
     // Warning: (ae-forgotten-export) The symbol "QNameWithTypeTagConsumer" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "AssociationDefinitionBuilder" needs to be exported by the entry point index.d.ts
-    export function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>, sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>, targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): AssociationDefinitionBuilder;
+    export function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>, sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string, targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string): AssociationDefinitionBuilder;
+    // Warning: (ae-forgotten-export) The symbol "PlainModelFromBuilder" needs to be exported by the entry point index.d.ts
+    export function fromPlainModel(model: {
+        name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
+        sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
+        targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
+    } & PlainModelFromBuilder<AssociationDefinitionBuilder>): AssociationDefinition;
 }
 
 // @public
@@ -41,6 +47,9 @@ export interface ClassDefinition extends DictionaryDefinition<QNameTypeTag.CLASS
 export namespace ClassDefinition {
     // Warning: (ae-forgotten-export) The symbol "ClassDefinitionBuilder" needs to be exported by the entry point index.d.ts
     export function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinitionBuilder;
+    export function fromPlainModel(model: {
+        name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
+    } & PlainModelFromBuilder<ClassDefinitionBuilder>): ClassDefinition;
 }
 
 // @public
@@ -173,7 +182,12 @@ export interface PropertyDefinition extends DictionaryDefinition<QNameTypeTag.PR
 // @public (undocumented)
 export namespace PropertyDefinition {
     // Warning: (ae-forgotten-export) The symbol "PropertyDefinitionBuilder" needs to be exported by the entry point index.d.ts
-    export function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>, container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>, dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE>): PropertyDefinitionBuilder;
+    export function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>, container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string, dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE> | string): PropertyDefinitionBuilder;
+    export function fromPlainModel(model: {
+        name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>;
+        container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
+        dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE> | string;
+    } & PlainModelFromBuilder<PropertyDefinitionBuilder>): PropertyDefinition;
 }
 
 // @public
@@ -186,6 +200,8 @@ export interface QName {
 
 // @public
 export namespace QName {
+    // @internal
+    export function createQName(oldQName: QName, qnameString: string): QName;
     export function equals(a: QName | null | undefined, b: QName | string | null | undefined): boolean;
     export function isInstance(a: any): a is QName;
     export function toPrefixString(qname: QName): string;

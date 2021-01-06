@@ -22,6 +22,6 @@ export default class QNameMap<T extends DictionaryDefinition> {
     }
 
     public keys(): readonly QName[] {
-        return this.all().map(value => value.name);
+        return this.all().map((value) => value.name);
     }
 }

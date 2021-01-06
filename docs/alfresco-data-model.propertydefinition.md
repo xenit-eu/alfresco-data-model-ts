@@ -16,4 +16,5 @@ declare namespace PropertyDefinition
 |  Function | Description |
 |  --- | --- |
 |  [builder(name, container, dataType)](./alfresco-data-model.propertydefinition.builder.md) | Creates a builder for an [PropertyDefinition](./alfresco-data-model.propertydefinition.md) |
+|  [fromPlainModel(model)](./alfresco-data-model.propertydefinition.fromplainmodel.md) | Creates a [PropertyDefinition](./alfresco-data-model.propertydefinition.md) from a plain object |
 

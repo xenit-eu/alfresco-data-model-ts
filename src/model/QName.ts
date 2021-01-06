@@ -58,6 +58,16 @@ namespace QName {
         return qname.prefix + ':' + qname.localName;
     }
 
+    /**
+     * Creates a QName from a string
+     * @param oldQName - The QName from which we can get a factory to create a new QName
+     * @param qnameString - The QName to create in string format
+     * @internal
+     */
+    export function createQName(oldQName: QName, qnameString: string): QName {
+        return oldQName[factorySymbol].createQNameFromString(qnameString);
+    }
+
     function maybeCreateQName(
         oldQName: QName,
         qnameString: string

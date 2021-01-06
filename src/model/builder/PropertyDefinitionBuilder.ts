@@ -2,35 +2,33 @@ import {
     QNameTypeTag,
     QNameWithTypeTag,
     QNameWithTypeTagConsumer,
-} from './QName';
+} from '../QName';
 import DictionaryDefinitionBuilder from './DictionaryDefinitionBuilder';
-import PropertyDefinition, { PropertyConstraint } from './PropertyDefinition';
+import PropertyDefinition, { PropertyConstraint } from '../PropertyDefinition';
 
-export default class PropertyDefinitionBuilder extends DictionaryDefinitionBuilder<
-    QNameTypeTag.PROPERTY
-> {
-    container: QNameWithTypeTag<QNameTypeTag.CLASS>;
-    defaultValue: string | null = null;
-
-    dataType: QNameWithTypeTag<QNameTypeTag.DATA_TYPE>;
-
-    multiValued: boolean = false;
-
-    mandatory: boolean = false;
-    mandatoryEnforced: boolean = false;
-    protected: boolean = false;
-    residual: boolean = false;
-    constraints: readonly PropertyConstraint[] = [];
+export default class PropertyDefinitionBuilder extends DictionaryDefinitionBuilder<QNameTypeTag.PROPERTY> {
+    private container: QNameWithTypeTag<QNameTypeTag.CLASS>;
+    private defaultValue: string | null = null;
+    private dataType: QNameWithTypeTag<QNameTypeTag.DATA_TYPE>;
+    private multiValued: boolean = false;
+    private mandatory: boolean = false;
+    private mandatoryEnforced: boolean = false;
+    private protected: boolean = false;
+    private residual: boolean = false;
+    private constraints: readonly PropertyConstraint[] = [];
 
     public constructor(
         name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>,
-        container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>,
-        dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE>
+        container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string,
+        dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE> | string
     ) {
         super(QNameTypeTag.PROPERTY, name);
-        this.container = QNameWithTypeTag.addTag(container, QNameTypeTag.CLASS);
+        this.container = QNameWithTypeTag.addTag(
+            this._createQNameFromString(container),
+            QNameTypeTag.CLASS
+        );
         this.dataType = QNameWithTypeTag.addTag(
-            dataType,
+            this._createQNameFromString(dataType),
             QNameTypeTag.DATA_TYPE
         );
     }

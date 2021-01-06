@@ -1,4 +1,8 @@
-import AssociationDefinitionBuilder from './AssociationDefinitionBuilder';
+import AssociationDefinitionBuilder from './builder/AssociationDefinitionBuilder';
+import {
+    PlainModelFromBuilder,
+    default as _fromPlainModel,
+} from './builder/fromPlainModel';
 import DictionaryDefinition from './DictionaryDefinition';
 import {
     QNameTypeTag,
@@ -92,10 +96,30 @@ namespace AssociationDefinition {
      */
     export function builder(
         name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>,
-        sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>,
-        targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
+        sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string,
+        targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string
     ): AssociationDefinitionBuilder {
         return new AssociationDefinitionBuilder(name, sourceName, targetName);
+    }
+
+    /**
+     * Creates an {@link (AssociationDefinition:interface)} from a plain object
+     * @param model - Plain object to create an AssociationDefinition from
+     * @public
+     */
+    export function fromPlainModel(
+        model: {
+            name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
+            sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
+            targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
+        } & PlainModelFromBuilder<AssociationDefinitionBuilder>
+    ): AssociationDefinition {
+        const b = builder(model.name, model.sourceName, model.targetName);
+        const clone: Partial<typeof model> = { ...model };
+        delete clone.name;
+        delete clone.sourceName;
+        delete clone.targetName;
+        return _fromPlainModel(b, clone);
     }
 }
 

@@ -16,4 +16,5 @@ declare namespace AssociationDefinition
 |  Function | Description |
 |  --- | --- |
 |  [builder(name, sourceName, targetName)](./alfresco-data-model.associationdefinition.builder.md) | Creates a builder for an [AssociationDefinition](./alfresco-data-model.associationdefinition.md) |
+|  [fromPlainModel(model)](./alfresco-data-model.associationdefinition.fromplainmodel.md) | Creates an [AssociationDefinition](./alfresco-data-model.associationdefinition.md) from a plain object |
 

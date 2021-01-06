@@ -9,7 +9,7 @@ Creates a builder for an [PropertyDefinition](./alfresco-data-model.propertydefi
 <b>Signature:</b>
 
 ```typescript
-function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>, container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>, dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE>): PropertyDefinitionBuilder;
+function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>, container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string, dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE> | string): PropertyDefinitionBuilder;
 ```
 
 ## Parameters
@@ -17,8 +17,8 @@ function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>, containe
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | QNameWithTypeTagConsumer&lt;QNameTypeTag.PROPERTY&gt; | The QName of the property |
-|  container | QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; | The QName of the class that contains the property |
-|  dataType | QNameWithTypeTagConsumer&lt;QNameTypeTag.DATA\_TYPE&gt; | The QName of data type of the property |
+|  container | QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; \| string | The QName of the class that contains the property |
+|  dataType | QNameWithTypeTagConsumer&lt;QNameTypeTag.DATA\_TYPE&gt; \| string | The QName of data type of the property |
 
 <b>Returns:</b>
 

@@ -4,7 +4,11 @@ import {
     QNameWithTypeTagConsumer,
 } from './QName';
 import DictionaryDefinition from './DictionaryDefinition';
-import ClassDefinitionBuilder from './ClassDefinitionBuilder';
+import ClassDefinitionBuilder from './builder/ClassDefinitionBuilder';
+import {
+    PlainModelFromBuilder,
+    default as _fromPlainModel,
+} from './builder/fromPlainModel';
 
 /**
  * Describes a class for a node.
@@ -47,9 +51,7 @@ interface ClassDefinition extends DictionaryDefinition<QNameTypeTag.CLASS> {
     /**
      * Associations that are declared by this class.
      */
-    readonly associations: readonly QNameWithTypeTag<
-        QNameTypeTag.ASSOCIATION
-    >[];
+    readonly associations: readonly QNameWithTypeTag<QNameTypeTag.ASSOCIATION>[];
 }
 
 /**
@@ -65,6 +67,22 @@ namespace ClassDefinition {
         name: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): ClassDefinitionBuilder {
         return new ClassDefinitionBuilder(name);
+    }
+
+    /**
+     * Creates a {@link (ClassDefinition:interface)} from a plain object
+     * @param model - Plain object to create an ClassDefinition from
+     * @public
+     */
+    export function fromPlainModel(
+        model: {
+            name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
+        } & PlainModelFromBuilder<ClassDefinitionBuilder>
+    ): ClassDefinition {
+        const b = builder(model.name);
+        const clone: Partial<typeof model> = { ...model };
+        delete clone.name;
+        return _fromPlainModel(b, clone);
     }
 }
 

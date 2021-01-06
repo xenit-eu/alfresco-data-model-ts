@@ -10,7 +10,7 @@ function makeUnique2<T>(
     cmp: (a: T, b: T) => boolean
 ): T[] {
     return items.filter(
-        (value, i, arr) => arr.findIndex(value2 => cmp(value, value2)) === i
+        (value, i, arr) => arr.findIndex((value2) => cmp(value, value2)) === i
     );
 }
 
@@ -63,7 +63,7 @@ export class DictionaryCircularDependencyError extends DictionaryError {
                 ': ' +
                 makeUnique2(path, QName.equals)
                     .concat([reference])
-                    .map(c => QName.toPrefixString(c))
+                    .map((c) => QName.toPrefixString(c))
                     .join(' -> ')
         );
         Object.setPrototypeOf(this, new.target.prototype);

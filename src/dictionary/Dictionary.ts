@@ -41,9 +41,7 @@ export default class Dictionary implements IDictionary {
     private readonly childrenCache: QNameCache<
         QNameWithTypeTag<QNameTypeTag.CLASS>[]
     > = new QNameCache();
-    private readonly residualPropertiesCache: QNameCache<
-        PropertyDefinition
-    > = new QNameCache();
+    private readonly residualPropertiesCache: QNameCache<PropertyDefinition> = new QNameCache();
 
     /**
      * Creates the dictionary
@@ -149,7 +147,7 @@ export default class Dictionary implements IDictionary {
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>,
         visited: readonly QName[]
     ): ClassDefinition[] {
-        if (visited.findIndex(q => QName.equals(qname, q)) !== -1) {
+        if (visited.findIndex((q) => QName.equals(qname, q)) !== -1) {
             throw new DictionaryCircularDependencyError(qname, visited);
         }
         const newVisited = visited.concat([qname]);
@@ -159,7 +157,7 @@ export default class Dictionary implements IDictionary {
 
         for (const parent of parents) {
             newVisited.push(parent.name);
-            const myAspects = parent.mandatoryAspects.flatMap(aspect =>
+            const myAspects = parent.mandatoryAspects.flatMap((aspect) =>
                 this.getAllClassesForClass0(aspect, newVisited)
             );
             allClasses.push(parent, ...myAspects);
@@ -179,8 +177,8 @@ export default class Dictionary implements IDictionary {
         const allClasses = this.getAllClassesForClass(qname);
 
         return allClasses
-            .flatMap(c => c.properties)
-            .map(p => this.getProperty(p));
+            .flatMap((c) => c.properties)
+            .map((p) => this.getProperty(p));
     }
 
     /**
@@ -194,8 +192,8 @@ export default class Dictionary implements IDictionary {
         const allClasses = this.getAllClassesForClass(qname);
 
         return allClasses
-            .flatMap(c => c.associations)
-            .map(a => this.getAssociation(a)!);
+            .flatMap((c) => c.associations)
+            .map((a) => this.getAssociation(a)!);
     }
 
     /**
@@ -208,7 +206,7 @@ export default class Dictionary implements IDictionary {
 
         const cachedParents = this.parentsCache.get(qname);
         if (cachedParents) {
-            return cachedParents.map(q => this.getClass(q)!);
+            return cachedParents.map((q) => this.getClass(q)!);
         }
 
         let parentQName: QName | null = qname;
@@ -227,7 +225,7 @@ export default class Dictionary implements IDictionary {
             if (parents.indexOf(definition) !== -1) {
                 throw new DictionaryCircularDependencyError(
                     parentQName,
-                    parents.map(c => c.name)
+                    parents.map((c) => c.name)
                 );
             }
             parents.push(definition);
@@ -236,7 +234,7 @@ export default class Dictionary implements IDictionary {
         parents.reverse();
         this.parentsCache.put(
             qname,
-            parents.map(p => p.name)
+            parents.map((p) => p.name)
         );
         return parents;
     }
@@ -248,14 +246,18 @@ export default class Dictionary implements IDictionary {
         qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
     ): ClassDefinition[] {
         QNameWithTypeTag.assertTag(qname, QNameTypeTag.CLASS);
-        const allMandatoryAspects = this.getParentsForClass(qname).flatMap(cl =>
-            cl.mandatoryAspects.flatMap(asp => {
-                const allClasses = this.getAllClassesForClass(asp);
-                if (allClasses.length === 0) {
-                    throw new DictionaryMissingDependencyError(asp, cl.name);
-                }
-                return allClasses;
-            })
+        const allMandatoryAspects = this.getParentsForClass(qname).flatMap(
+            (cl) =>
+                cl.mandatoryAspects.flatMap((asp) => {
+                    const allClasses = this.getAllClassesForClass(asp);
+                    if (allClasses.length === 0) {
+                        throw new DictionaryMissingDependencyError(
+                            asp,
+                            cl.name
+                        );
+                    }
+                    return allClasses;
+                })
         );
         return makeUnique(allMandatoryAspects);
     }
@@ -268,7 +270,7 @@ export default class Dictionary implements IDictionary {
     ): ClassDefinition[] {
         const cachedChildren = this.childrenCache.get(qname);
         if (cachedChildren) {
-            return cachedChildren.map(q => this.getClass(q)!);
+            return cachedChildren.map((q) => this.getClass(q)!);
         }
 
         const myself = this.getClass(qname);
@@ -286,7 +288,7 @@ export default class Dictionary implements IDictionary {
 
         this.childrenCache.put(
             qname,
-            children.map(c => c.name)
+            children.map((c) => c.name)
         );
 
         return children;

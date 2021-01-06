@@ -16,4 +16,5 @@ declare namespace ClassDefinition
 |  Function | Description |
 |  --- | --- |
 |  [builder(name)](./alfresco-data-model.classdefinition.builder.md) | Creates a builder for a [ClassDefinition](./alfresco-data-model.classdefinition.md) |
+|  [fromPlainModel(model)](./alfresco-data-model.classdefinition.fromplainmodel.md) | Creates a [ClassDefinition](./alfresco-data-model.classdefinition.md) from a plain object |
 

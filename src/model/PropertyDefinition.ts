@@ -4,7 +4,11 @@ import {
     QNameWithTypeTagConsumer,
 } from './QName';
 import DictionaryDefinition from './DictionaryDefinition';
-import PropertyDefinitionBuilder from './PropertyDefinitionBuilder';
+import PropertyDefinitionBuilder from './builder/PropertyDefinitionBuilder';
+import {
+    PlainModelFromBuilder,
+    default as _fromPlainModel,
+} from './builder/fromPlainModel';
 
 /**
  * Describes a property of a node.
@@ -72,10 +76,30 @@ namespace PropertyDefinition {
      */
     export function builder(
         name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>,
-        container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>,
-        dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE>
+        container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string,
+        dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE> | string
     ): PropertyDefinitionBuilder {
         return new PropertyDefinitionBuilder(name, container, dataType);
+    }
+
+    /**
+     * Creates a {@link (PropertyDefinition:interface)} from a plain object
+     * @param model - Plain object to create an PropertyDefinition from
+     * @public
+     */
+    export function fromPlainModel(
+        model: {
+            name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>;
+            container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
+            dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE> | string;
+        } & PlainModelFromBuilder<PropertyDefinitionBuilder>
+    ): PropertyDefinition {
+        const b = builder(model.name, model.container, model.dataType);
+        const clone: Partial<typeof model> = { ...model };
+        delete clone.name;
+        delete clone.container;
+        delete clone.dataType;
+        return _fromPlainModel(b, clone);
     }
 }
 

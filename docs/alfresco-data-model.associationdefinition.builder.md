@@ -9,7 +9,7 @@ Creates a builder for an [AssociationDefinition](./alfresco-data-model.associati
 <b>Signature:</b>
 
 ```typescript
-function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>, sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>, targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): AssociationDefinitionBuilder;
+function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>, sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string, targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string): AssociationDefinitionBuilder;
 ```
 
 ## Parameters
@@ -17,8 +17,8 @@ function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>, sourc
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  name | QNameWithTypeTagConsumer&lt;QNameTypeTag.ASSOCIATION&gt; | The QName of the association |
-|  sourceName | QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; | The QName of the source class |
-|  targetName | QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; | The QName of the target class |
+|  sourceName | QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; \| string | The QName of the source class |
+|  targetName | QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; \| string | The QName of the target class |
 
 <b>Returns:</b>
 

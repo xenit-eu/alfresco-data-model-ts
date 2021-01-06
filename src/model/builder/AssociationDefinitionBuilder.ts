@@ -2,36 +2,34 @@ import {
     QNameTypeTag,
     QNameWithTypeTag,
     QNameWithTypeTagConsumer,
-} from './QName';
+} from '../QName';
 import DictionaryDefinitionBuilder from './DictionaryDefinitionBuilder';
-import AssociationDefinition from './AssociationDefinition';
+import AssociationDefinition from '../AssociationDefinition';
 
-export default class AssociationDefinitionBuilder extends DictionaryDefinitionBuilder<
-    QNameTypeTag.ASSOCIATION
-> {
-    sourceName: QNameWithTypeTag<QNameTypeTag.CLASS>;
-    sourceMany: boolean = false;
-    sourceMandatory: boolean = false;
-    sourceMandatoryEnforced: boolean = false;
-    targetName: QNameWithTypeTag<QNameTypeTag.CLASS>;
-    targetMany: boolean = true;
-    targetMandatory: boolean = false;
-    targetMandatoryEnforced: boolean = false;
-    protected: boolean = false;
-    childAssociation: boolean = false;
+export default class AssociationDefinitionBuilder extends DictionaryDefinitionBuilder<QNameTypeTag.ASSOCIATION> {
+    private sourceName: QNameWithTypeTag<QNameTypeTag.CLASS>;
+    private sourceMany: boolean = false;
+    private sourceMandatory: boolean = false;
+    private sourceMandatoryEnforced: boolean = false;
+    private targetName: QNameWithTypeTag<QNameTypeTag.CLASS>;
+    private targetMany: boolean = true;
+    private targetMandatory: boolean = false;
+    private targetMandatoryEnforced: boolean = false;
+    private protected: boolean = false;
+    private childAssociation: boolean = false;
 
     public constructor(
         name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>,
-        sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>,
-        targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
+        sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string,
+        targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string
     ) {
         super(QNameTypeTag.ASSOCIATION, name);
         this.sourceName = QNameWithTypeTag.addTag(
-            sourceName,
+            this._createQNameFromString(sourceName),
             QNameTypeTag.CLASS
         );
         this.targetName = QNameWithTypeTag.addTag(
-            targetName,
+            this._createQNameFromString(targetName),
             QNameTypeTag.CLASS
         );
     }
