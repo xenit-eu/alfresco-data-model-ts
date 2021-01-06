@@ -95,15 +95,14 @@ export default class Dictionary implements IDictionary {
             return prop;
         }
 
-        const residualProp = PropertyDefinition.builder(
-            qname,
-            this.qnameFactory.createQNameFromString('sys:base'),
-            this.qnameFactory.createQNameFromString('d:any')
-        )
-            .withDescription('Residual property ' + QName.toPrefixString(qname))
-            .withMultiValued(true)
-            .withResidual(true)
-            .build();
+        const residualProp = PropertyDefinition.fromPlainModel({
+            name: qname,
+            container: 'sys:base',
+            dataType: 'd:any',
+            description: 'Residual property ' + QName.toPrefixString(qname),
+            multiValued: true,
+            residual: true,
+        });
 
         this.residualPropertiesCache.put(qname, residualProp);
         return residualProp;
