@@ -17,7 +17,7 @@ export default class Dictionary implements IDictionary
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(classes, properties, associations, qnameFactory)](./alfresco-data-model.dictionary._constructor_.md) |  | Creates the dictionary |
+|  [(constructor)(classes, properties, associations)](./alfresco-data-model.dictionary._constructor_.md) |  | Creates the dictionary |
 
 ## Methods
 

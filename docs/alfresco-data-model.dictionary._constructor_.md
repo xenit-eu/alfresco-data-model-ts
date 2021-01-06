@@ -9,7 +9,7 @@ Creates the dictionary
 <b>Signature:</b>
 
 ```typescript
-constructor(classes: readonly ClassDefinition[], properties: readonly PropertyDefinition[], associations: readonly AssociationDefinition[], qnameFactory: IQNameFactory);
+constructor(classes: readonly ClassDefinition[], properties: readonly PropertyDefinition[], associations: readonly AssociationDefinition[]);
 ```
 
 ## Parameters
@@ -19,5 +19,4 @@ constructor(classes: readonly ClassDefinition[], properties: readonly PropertyDe
 |  classes | readonly ClassDefinition\[\] | All datamodel classes (both types and aspects) |
 |  properties | readonly PropertyDefinition\[\] | All datamodel properties |
 |  associations | readonly AssociationDefinition\[\] | All datamodel associations |
-|  qnameFactory | IQNameFactory | A [IQNameFactory](./alfresco-data-model.iqnamefactory.md) that is used to create QNames on-demand when necessary |
 

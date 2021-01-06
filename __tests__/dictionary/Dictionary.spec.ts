@@ -345,8 +345,7 @@ describe('Dictionary', () => {
                 targetMandatoryEnforced: false,
                 targetMany: true,
             },
-        ],
-        qnameFactory
+        ]
     );
 
     it('#getClass()', () => {
@@ -771,8 +770,7 @@ describe('Dictionary', () => {
                 },
             ],
             [],
-            [],
-            qnameFactory
+            []
         );
 
         it('Handles a circular reference', () => {

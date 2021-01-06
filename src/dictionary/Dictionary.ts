@@ -1,7 +1,6 @@
 import {
     AssociationDefinition,
     ClassDefinition,
-    IQNameFactory,
     PropertyDefinition,
     QName,
 } from '../model';
@@ -49,13 +48,11 @@ export default class Dictionary implements IDictionary {
      * @param classes - All datamodel classes (both types and aspects)
      * @param properties - All datamodel properties
      * @param associations - All datamodel associations
-     * @param qnameFactory - A {@link IQNameFactory} that is used to create QNames on-demand when necessary
      */
     public constructor(
         classes: readonly ClassDefinition[],
         properties: readonly PropertyDefinition[],
-        associations: readonly AssociationDefinition[],
-        private readonly qnameFactory: IQNameFactory
+        associations: readonly AssociationDefinition[]
     ) {
         this.classes = new QNameMap(classes);
         this.properties = new QNameMap(properties);

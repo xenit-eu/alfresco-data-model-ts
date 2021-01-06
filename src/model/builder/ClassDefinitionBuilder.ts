@@ -31,10 +31,9 @@ export default class ClassDefinitionBuilder extends DictionaryDefinitionBuilder<
     }
 
     public withMandatoryAspects(
-        mandatoryAspects: (
-            | QNameWithTypeTagConsumer<QNameTypeTag.CLASS>
-            | string
-        )[]
+        mandatoryAspects: ReadonlyArray<
+            QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string
+        >
     ): this {
         this.mandatoryAspects = mandatoryAspects.map((q) =>
             QNameWithTypeTag.addTag(
@@ -46,7 +45,9 @@ export default class ClassDefinitionBuilder extends DictionaryDefinitionBuilder<
     }
 
     public withProperties(
-        properties: (QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY> | string)[]
+        properties: ReadonlyArray<
+            QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY> | string
+        >
     ): this {
         this.properties = properties.map((q) =>
             QNameWithTypeTag.addTag(
@@ -58,10 +59,9 @@ export default class ClassDefinitionBuilder extends DictionaryDefinitionBuilder<
     }
 
     public withAssociations(
-        associations: (
-            | QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>
-            | string
-        )[]
+        associations: ReadonlyArray<
+            QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION> | string
+        >
     ): this {
         this.associations = associations.map((q) =>
             QNameWithTypeTag.addTag(

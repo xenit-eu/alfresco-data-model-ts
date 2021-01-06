@@ -54,7 +54,7 @@ export namespace ClassDefinition {
 
 // @public
 export class Dictionary implements IDictionary {
-    constructor(classes: readonly ClassDefinition[], properties: readonly PropertyDefinition[], associations: readonly AssociationDefinition[], qnameFactory: IQNameFactory);
+    constructor(classes: readonly ClassDefinition[], properties: readonly PropertyDefinition[], associations: readonly AssociationDefinition[]);
     getAllAssociationsForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): AssociationDefinition[];
     getAllClassesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinition[];
     getAllPropertiesForClass(qname: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): PropertyDefinition[];
