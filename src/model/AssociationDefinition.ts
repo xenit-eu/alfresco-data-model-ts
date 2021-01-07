@@ -112,7 +112,10 @@ namespace AssociationDefinition {
             name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
             sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
             targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
-        } & PlainModelFromBuilder<AssociationDefinitionBuilder>
+        } & Omit<
+            PlainModelFromBuilder<AssociationDefinitionBuilder>,
+            'name' | 'sourceName' | 'targetName'
+        >
     ): AssociationDefinition {
         const b = builder(model.name, model.sourceName, model.targetName);
         const clone: Partial<typeof model> = { ...model };

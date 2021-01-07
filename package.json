@@ -59,6 +59,7 @@
     "@types/debug": "^4.1.5",
     "debug": "^4.1.1",
     "tiny-invariant": "^1.1.0",
+    "tiny-warning": "^1.0.3",
     "tslib": "^2.0.3"
   },
   "resolutions": {

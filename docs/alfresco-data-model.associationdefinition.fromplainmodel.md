@@ -13,14 +13,14 @@ function fromPlainModel(model: {
         name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
         sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
         targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
-    } & PlainModelFromBuilder<AssociationDefinitionBuilder>): AssociationDefinition;
+    } & Omit<PlainModelFromBuilder<AssociationDefinitionBuilder>, "name" | "sourceName" | "targetName">): AssociationDefinition;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  model | { name: QNameWithTypeTagConsumer&lt;QNameTypeTag.ASSOCIATION&gt;; sourceName: QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; \| string; targetName: QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; \| string; } &amp; PlainModelFromBuilder&lt;AssociationDefinitionBuilder&gt; | Plain object to create an AssociationDefinition from |
+|  model | { name: QNameWithTypeTagConsumer&lt;QNameTypeTag.ASSOCIATION&gt;; sourceName: QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; \| string; targetName: QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; \| string; } &amp; Omit&lt;PlainModelFromBuilder&lt;AssociationDefinitionBuilder&gt;, "name" \| "sourceName" \| "targetName"&gt; | Plain object to create an AssociationDefinition from |
 
 <b>Returns:</b>
 

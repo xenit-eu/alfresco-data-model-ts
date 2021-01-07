@@ -11,14 +11,14 @@ Creates a [ClassDefinition](./alfresco-data-model.classdefinition.md) from a pla
 ```typescript
 function fromPlainModel(model: {
         name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
-    } & PlainModelFromBuilder<ClassDefinitionBuilder>): ClassDefinition;
+    } & Omit<PlainModelFromBuilder<ClassDefinitionBuilder>, "name">): ClassDefinition;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  model | { name: QNameWithTypeTagConsumer&lt;QNameTypeTag.ASSOCIATION&gt;; } &amp; PlainModelFromBuilder&lt;ClassDefinitionBuilder&gt; | Plain object to create an ClassDefinition from |
+|  model | { name: QNameWithTypeTagConsumer&lt;QNameTypeTag.ASSOCIATION&gt;; } &amp; Omit&lt;PlainModelFromBuilder&lt;ClassDefinitionBuilder&gt;, "name"&gt; | Plain object to create an ClassDefinition from |
 
 <b>Returns:</b>
 

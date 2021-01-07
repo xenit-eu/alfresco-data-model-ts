@@ -77,12 +77,15 @@ namespace ClassDefinition {
     export function fromPlainModel(
         model: {
             name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
-        } & PlainModelFromBuilder<ClassDefinitionBuilder>
+        } & Omit<PlainModelFromBuilder<ClassDefinitionBuilder>, 'name'>
     ): ClassDefinition {
         const b = builder(model.name);
         const clone: Partial<typeof model> = { ...model };
         delete clone.name;
-        return _fromPlainModel(b, clone);
+        return _fromPlainModel(
+            b,
+            clone as PlainModelFromBuilder<ClassDefinitionBuilder>
+        );
     }
 }
 

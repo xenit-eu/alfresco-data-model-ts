@@ -13,14 +13,14 @@ function fromPlainModel(model: {
         name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>;
         container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
         dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE> | string;
-    } & PlainModelFromBuilder<PropertyDefinitionBuilder>): PropertyDefinition;
+    } & Omit<PlainModelFromBuilder<PropertyDefinitionBuilder>, "name" | "container" | "dataType">): PropertyDefinition;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  model | { name: QNameWithTypeTagConsumer&lt;QNameTypeTag.PROPERTY&gt;; container: QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; \| string; dataType: QNameWithTypeTagConsumer&lt;QNameTypeTag.DATA\_TYPE&gt; \| string; } &amp; PlainModelFromBuilder&lt;PropertyDefinitionBuilder&gt; | Plain object to create an PropertyDefinition from |
+|  model | { name: QNameWithTypeTagConsumer&lt;QNameTypeTag.PROPERTY&gt;; container: QNameWithTypeTagConsumer&lt;QNameTypeTag.CLASS&gt; \| string; dataType: QNameWithTypeTagConsumer&lt;QNameTypeTag.DATA\_TYPE&gt; \| string; } &amp; Omit&lt;PlainModelFromBuilder&lt;PropertyDefinitionBuilder&gt;, "name" \| "container" \| "dataType"&gt; | Plain object to create an PropertyDefinition from |
 
 <b>Returns:</b>
 

@@ -32,7 +32,7 @@ export namespace AssociationDefinition {
         name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
         sourceName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
         targetName: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
-    } & PlainModelFromBuilder<AssociationDefinitionBuilder>): AssociationDefinition;
+    } & Omit<PlainModelFromBuilder<AssociationDefinitionBuilder>, 'name' | 'sourceName' | 'targetName'>): AssociationDefinition;
 }
 
 // @public
@@ -49,7 +49,7 @@ export namespace ClassDefinition {
     export function builder(name: QNameWithTypeTagConsumer<QNameTypeTag.CLASS>): ClassDefinitionBuilder;
     export function fromPlainModel(model: {
         name: QNameWithTypeTagConsumer<QNameTypeTag.ASSOCIATION>;
-    } & PlainModelFromBuilder<ClassDefinitionBuilder>): ClassDefinition;
+    } & Omit<PlainModelFromBuilder<ClassDefinitionBuilder>, 'name'>): ClassDefinition;
 }
 
 // @public
@@ -187,7 +187,7 @@ export namespace PropertyDefinition {
         name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>;
         container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
         dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE> | string;
-    } & PlainModelFromBuilder<PropertyDefinitionBuilder>): PropertyDefinition;
+    } & Omit<PlainModelFromBuilder<PropertyDefinitionBuilder>, 'name' | 'container' | 'dataType'>): PropertyDefinition;
 }
 
 // @public

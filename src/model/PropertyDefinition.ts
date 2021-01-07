@@ -92,7 +92,10 @@ namespace PropertyDefinition {
             name: QNameWithTypeTagConsumer<QNameTypeTag.PROPERTY>;
             container: QNameWithTypeTagConsumer<QNameTypeTag.CLASS> | string;
             dataType: QNameWithTypeTagConsumer<QNameTypeTag.DATA_TYPE> | string;
-        } & PlainModelFromBuilder<PropertyDefinitionBuilder>
+        } & Omit<
+            PlainModelFromBuilder<PropertyDefinitionBuilder>,
+            'name' | 'container' | 'dataType'
+        >
     ): PropertyDefinition {
         const b = builder(model.name, model.container, model.dataType);
         const clone: Partial<typeof model> = { ...model };
